@@ -1,7 +1,37 @@
 import styled from "styled-components";
+import { banner_image } from "../../utils/images";
+import { FaGamepad } from "react-icons/fa6";
 
 const Banner = () => {
-	return <BannerWrapper></BannerWrapper>;
+	return (
+		<BannerWrapper
+			className="d-flex align-items-center justify-content-start px-6"
+			style={{
+				background: `linear-gradient(0deg, rgba(0, 0, 0, 0.32), rgba(0, 0, 0, 0.32)), linear-gradient(248.75deg, rgba(0, 0, 0, 0.41) 0%, rgba(0, 0, 0, 0.41) 38.46%), url(${banner_image}) center/cover no-repeat`,
+			}}
+		>
+			<div className="banner-content w-100 text-white">
+				<div className="banner-badge text-uppercase">Join The Community</div>
+				<h1 className="banner-title text-uppercase">Best games to play</h1>
+				<p className="lead-text text-justify">
+					Step into the exhilarating world of live gaming, where you can explore an extensive selection of games spanning every genre imaginable. Whether you’re a casual player or
+					a dedicated enthusiast, our platform offers something for everyone, ensuring you’ll always find new adventures and challenges to enjoy.
+				</p>
+				<button
+					type="button"
+					className="banner-btn d-flex align-items-center"
+				>
+					<span className="btn-icon">
+						<FaGamepad
+							className="text-white"
+							size={27}
+						/>
+					</span>
+					<span className="btn-text text-green">Play Now</span>
+				</button>
+			</div>
+		</BannerWrapper>
+	);
 };
 
 export default Banner;

@@ -9,35 +9,36 @@ const AppRouter = () => {
 				<Route
 					path="/"
 					element={<BaseLayout />}
-				/>
-				<Route
-					path="/"
-					element={<Home />}
-				/>
-				<Route
-					path="/games"
-					element={<ViewGameAll />}
-				/>
-				<Route
-					path="/games/:gameId"
-					element={<ViewGameDetails />}
-				/>
-				<Route
-					path="/stores"
-					element={<ViewStoreAll />}
-				/>
-				<Route
-					path="/stores/:storeId"
-					element={<ViewStoreDetails />}
-				/>
-				<Route
-					path="/creators"
-					element={<ViewCreatorAll />}
-				/>
-				<Route
-					path="*"
-					element={<Error />}
-				/>
+				>
+					<Route
+						index
+						element={<Home />}
+					/>
+					<Route
+						path="games"
+						element={<ViewGameAll />}
+					/>
+					<Route
+						path="games/:gameId"
+						element={<ViewGameDetails />}
+					/>
+					<Route
+						path="stores"
+						element={<ViewStoreAll />}
+					/>
+					<Route
+						path="stores/:storeId"
+						element={<ViewStoreDetails />}
+					/>
+					<Route
+						path="creators"
+						element={<ViewCreatorAll />}
+					/>
+					<Route
+						path="*"
+						element={<Error />}
+					/>
+				</Route>
 			</Routes>
 		</BrowserRouter>
 	);

@@ -76,7 +76,7 @@ const Navbar = () => {
 						</ul>
 
 						<ul className="connect-list d-flex justify-content-center align-items-center mt-5 flex-wrap">
-							<li className="text-uppercase fw-7 w-100 connect-text mb-2">Connect</li>
+							<li className="text-uppercase fw-7 w-100 connect-text mb-2">Connect </li>
 							<li className="connect-item">
 								<Link
 									to={"/"}
@@ -121,7 +121,7 @@ export default Navbar;
 
 const NavbarWrapper = styled.div`
 	min-height: 78px;
-	background: #061924;
+	background: #000111;
 
 	.navbar-brand {
 		font-weight: 700;
@@ -192,7 +192,7 @@ const NavbarWrapper = styled.div`
 		top: 0;
 		width: 280px;
 		height: 100%;
-		background-color: var(--clr-white);
+		background-color: var(--clr-gray);
 		box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 		padding: 60px 20px 16px;
 		text-align: center;
