@@ -10,6 +10,7 @@ import { useSearchParams } from "react-router-dom";
 
 const GameAllPage = () => {
 	const dispatch = useDispatch();
+
 	const games = useSelector(selectAllGames);
 	const gamesStatus = useSelector(selectAllGamesStatus);
 	const prevPage = useSelector(selectGamesPreviousPage);
@@ -23,7 +24,7 @@ const GameAllPage = () => {
 	// Set initial URL if no page parameter exists
 	useEffect(() => {
 		if (!searchParams.get("page")) {
-			setSearchParams({ page: "1" });
+			setSearchParams({ page: "1" }, { replace: true });
 		}
 		// Scroll to top when component mounts
 		window.scrollTo({
@@ -36,7 +37,10 @@ const GameAllPage = () => {
 		dispatch(fetchAsyncGames(page));
 	}, [dispatch, page]);
 
-	const pageHandler = (pageValue) => setPage(pageValue);
+	const pageHandler = (pageValue) => {
+		setPage(pageValue);
+		setSearchParams({ page: pageValue.toString() }, { replace: true });
+	};
 
 	return (
 		<GameAllPageWrapper>
