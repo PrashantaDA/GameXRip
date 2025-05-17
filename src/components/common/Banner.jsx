@@ -40,7 +40,7 @@ const BannerWrapper = styled.div`
 	min-height: 768px;
 
 	.banner-badge {
-		background-color: var(--clr-green-normal);
+		background-color: var(--clr-purple-normal);
 		padding: 4px 16px;
 		font-weight: 600;
 		font-size: 20px;
@@ -69,7 +69,7 @@ const BannerWrapper = styled.div`
 		font-size: 16px;
 		font-weight: 600;
 		text-transform: uppercase;
-		border: 2px solid var(--clr-green-normal);
+		border: 2px solid var(--clr-purple-normal);
 		margin-top: 33px;
 
 		.btn-icon {
@@ -77,7 +77,7 @@ const BannerWrapper = styled.div`
 		}
 
 		&:hover {
-			background-color: var(--clr-green-normal);
+			background-color: var(--clr-purple-normal);
 			.btn-text {
 				color: var(--clr-white);
 			}

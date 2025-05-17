@@ -31,7 +31,7 @@ const TabsWrapper = styled.div`
 			display: none;
 
 			&:hover {
-				background-color: var(--clr-pink-normal);
+				background-color: var(--clr-red-normal);
 				color: var(--clr-white);
 			}
 		}
@@ -76,7 +76,7 @@ const TabsWrapper = styled.div`
 	}
 
 	.tabs-active {
-		background-color: var(--clr-pink-normal);
+		background-color: var(--clr-red-normal);
 		button {
 			color: var(--clr-white);
 		}

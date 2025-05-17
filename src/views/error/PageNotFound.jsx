@@ -11,7 +11,7 @@ const PageNotFoundWrapper = styled.div`
 	.value-404 {
 		font-size: 60px;
 		font-weight: 800;
-		color: var(--clr-green-normal);
+		color: var(--clr-purple-normal);
 	}
 	.not-found-text {
 		font-size: 24px;

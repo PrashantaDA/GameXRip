@@ -1,14 +1,48 @@
+import { useEffect } from "react";
 import styled from "styled-components";
-import { Banner, Title } from "../../components/common/index";
+import { Banner, Preloader, Title } from "../../components/common/index";
+import { useDispatch, useSelector } from "react-redux";
+import { selectAllGames, selectAllGamesStatus } from "../../redux/store/gameSlice";
+import { GameList } from "../../components/game/index";
+
+import { fetchAsyncGames } from "../../redux/utils/gameUtils";
+import { STATUS } from "../../utils/status";
+import { Link } from "react-router-dom";
 
 const HomePage = () => {
+	const dispatch = useDispatch();
+	const games = useSelector(selectAllGames);
+	const gamesStatus = useSelector(selectAllGamesStatus);
+
+	useEffect(() => {
+		dispatch(fetchAsyncGames());
+	}, [dispatch]);
+
+	const renderedPopularGames = (
+		<>
+			<GameList
+				sliceValue={9}
+				games={games}
+			/>
+			<div className="d-flex justify-content-center">
+				<Link
+					to={"/games"}
+					className="section-btn"
+				>
+					View all games
+				</Link>
+			</div>
+		</>
+	);
+
 	return (
 		<HomeWrapper>
 			<Banner />
 
 			<section className="section sc-popular">
 				<div className="container">
-					<Title titleName={{ firstText: "Top Popular", secondText: "Games" }} />
+					<Title titleName={{ firstText: "🔥Top", secondText: "Games" }} />
+					{gamesStatus === STATUS.LOADING ? <Preloader /> : games?.length > 0 ? renderedPopularGames : "No Games Found"}
 				</div>
 			</section>
 		</HomeWrapper>
@@ -38,7 +72,7 @@ const HomeWrapper = styled.div`
 			letter-spacing: 0.09em;
 
 			span {
-				color: var(--clr-green-normal);
+				color: var(--clr-purple-normal);
 				font-family: var(--font-family-right);
 			}
 		}

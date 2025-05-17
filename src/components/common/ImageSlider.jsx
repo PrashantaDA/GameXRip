@@ -16,7 +16,7 @@ const ImageSliderWrapper = styled.div`
 			outline: 0;
 
 			img {
-				border: 6px solid var(--clr-pink-normal);
+				border: 6px solid var(--clr-red-normal);
 			}
 		}
 
@@ -33,14 +33,14 @@ const ImageSliderWrapper = styled.div`
 					&::before {
 						width: 100% !important;
 						height: 100% !important;
-						border: 2px solid var(--clr-pink-normal);
+						border: 2px solid var(--clr-red-normal);
 						color: unset;
 						transition: var(--transition-default);
 					}
 				}
 
 				&.slick-active {
-					background-color: var(--clr-pink-normal);
+					background-color: var(--clr-red-normal);
 				}
 			}
 		}

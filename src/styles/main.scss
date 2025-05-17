@@ -10,7 +10,7 @@
 	--clr-violet-dark-active: rgb(7, 5, 27);
 	--clr-violet-darker: #050415;
 	--clr-violet-light: #100e2b;
-	--clr-green-normal: #009f9d;
+	--clr-purple-normal: #7851a9;
 	--clr-red-normal: #b91919;
 	--font-family-barlow: "Barlow", sans-serif;
 	--font-family-poppins: "Poppins", sans-serif;
@@ -178,13 +178,13 @@ select {
 	text-decoration: none;
 }
 .text-pink {
-	color: var(--clr-pink-normal);
+	color: var(--clr-red-normal);
 }
 .text-dark {
 	color: var(--clr-dark);
 }
 .text-green {
-	color: var(--clr-green-normal);
+	color: var(--clr-purple-normal);
 }
 
 .bg-white {
@@ -194,13 +194,13 @@ select {
 	background-color: var(--clr-black);
 }
 .bg-pink {
-	background-color: var(--clr-pink-normal);
+	background-color: var(--clr-red-normal);
 }
 .bg-dark {
 	background-color: var(--clr-dark);
 }
 .bg-green {
-	background-color: var(--clr-green-normal);
+	background-color: var(--clr-purple-normal);
 }
 
 /* font weights */
@@ -625,7 +625,7 @@ select {
 	font-size: 20px;
 	font-weight: 700;
 	letter-spacing: 0.15em;
-	background-color: var(--clr-green-normal);
+	background-color: var(--clr-purple-normal);
 	color: var(--clr-white);
 	position: relative;
 	z-index: 5;
