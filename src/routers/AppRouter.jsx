@@ -1,10 +1,26 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import { Home, Error, ViewGameAll, ViewGameDetails, ViewStoreAll, ViewStoreDetails, ViewCreatorAll } from "../views/index";
 import BaseLayout from "../layouts/BaseLayout";
+import { useEffect } from "react";
+
+// ScrollToTop component to handle scrolling on route changes
+const ScrollToTop = () => {
+	const { pathname } = useLocation();
+
+	useEffect(() => {
+		window.scrollTo({
+			top: 0,
+			behavior: "smooth",
+		});
+	}, [pathname]);
+
+	return null;
+};
 
 const AppRouter = () => {
 	return (
 		<BrowserRouter>
+			<ScrollToTop />
 			<Routes>
 				<Route
 					path="/"
