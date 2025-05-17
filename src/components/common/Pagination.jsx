@@ -58,7 +58,7 @@ const Pagination = ({ pageHandler, prevPage, currentPage, nextPage }) => {
 				disabled={!prevPage}
 				onClick={pagePrevHandler}
 			>
-				<AiOutlineArrowLeft className="me-3" /> Prev
+				<AiOutlineArrowLeft className="me-2" /> Prev
 			</button>
 			<button
 				type="button"
@@ -66,7 +66,7 @@ const Pagination = ({ pageHandler, prevPage, currentPage, nextPage }) => {
 				disabled={!nextPage}
 				onClick={pageNextHandler}
 			>
-				Next <AiOutlineArrowRight className="me-3" />
+				Next <AiOutlineArrowRight className="ms-2" />
 			</button>
 		</PaginationWrapper>
 	);
@@ -86,16 +86,57 @@ const PaginationWrapper = styled.div`
 	.prev-btn,
 	.next-btn {
 		margin: 0 16px;
-		font-size: 18px;
-		letter-spacing: 2px;
+		font-size: 16px;
+		letter-spacing: 1px;
 		cursor: pointer;
+		background: rgba(255, 255, 255, 0.05);
+		color: #fff;
+		border: 1px solid rgba(255, 255, 255, 0.1);
+		padding: 12px 24px;
+		border-radius: 8px;
+		transition: all 0.3s ease;
+		backdrop-filter: blur(4px);
+		position: relative;
+		overflow: hidden;
+
+		&::before {
+			content: "";
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			background: linear-gradient(45deg, rgba(108, 92, 231, 0.1), rgba(255, 255, 255, 0.1));
+			opacity: 0;
+			transition: opacity 0.3s ease;
+		}
+
+		&:hover:not(:disabled) {
+			background: rgba(255, 255, 255, 0.1);
+			transform: translateY(-2px);
+			box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+
+			&::before {
+				opacity: 1;
+			}
+		}
 
 		&:disabled {
 			cursor: default;
+			opacity: 0.5;
+			background: rgba(255, 255, 255, 0.02);
+		}
+
+		svg {
+			transition: transform 0.3s ease;
+		}
+
+		&:hover:not(:disabled) svg {
+			transform: scale(1.1);
 		}
 	}
 
 	.disabled {
-		opacity: 0.6;
+		opacity: 0.5;
 	}
 `;
