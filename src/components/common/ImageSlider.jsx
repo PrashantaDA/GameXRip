@@ -1,13 +1,86 @@
 import styled from "styled-components";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import Slider from "react-slick";
+import { sliderImages } from "../../utils/images";
 
 const ImageSlider = () => {
-	return <ImageSliderWrapper></ImageSliderWrapper>;
+	const settings = {
+		className: "center",
+		arrows: true,
+		centerMode: true,
+		infinite: true,
+		centerPadding: "0px",
+		slidesToShow: 3,
+		slidesToScroll: 1,
+		speed: 700,
+		autoplay: true,
+		dots: true,
+		responsive: [
+			{
+				breakpoint: 1400,
+				settings: {
+					slidesToShow: 3,
+				},
+			},
+			{
+				breakpoint: 992,
+				settings: {
+					slidesToShow: 1,
+					centerPadding: "140px",
+				},
+			},
+			{
+				breakpoint: 768,
+				settings: {
+					slidesToShow: 1,
+					dots: false,
+					centerPadding: "90px",
+				},
+			},
+		],
+	};
+
+	return (
+		<ImageSliderWrapper className="section">
+			<div className="slider-background">
+				<Slider
+					{...settings}
+					className="game-slider"
+				>
+					{sliderImages?.map((image, idx) => (
+						<div
+							className="slider-item img-fit-cover"
+							key={idx}
+						>
+							<img
+								src={image}
+								alt={image}
+								className="slider-item-img"
+							/>
+						</div>
+					))}
+				</Slider>
+			</div>
+		</ImageSliderWrapper>
+	);
 };
 
 export default ImageSlider;
 
 const ImageSliderWrapper = styled.div`
-	background-color: #050415;
+	position: relative;
+	padding: 0;
+	overflow: hidden;
+
+	.slider-background {
+		position: relative;
+		background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("/PA_bg.jpg");
+		background-size: cover;
+		background-position: center;
+		background-attachment: fixed;
+		padding: 36px 0;
+	}
 
 	.game-slider {
 		.slider-item {
@@ -16,13 +89,13 @@ const ImageSliderWrapper = styled.div`
 			outline: 0;
 
 			img {
-				border: 6px solid var(--clr-red-normal);
+				border: 2px solid var(--clr-red-normal);
 			}
 		}
 
 		.slick-list {
-			padding-top: 110px !important;
-			padding-bottom: 110px !important;
+			padding-top: 90px !important;
+			padding-bottom: 90px !important;
 		}
 
 		.slick-dots {
