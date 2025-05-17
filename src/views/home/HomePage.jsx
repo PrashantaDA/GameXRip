@@ -7,6 +7,9 @@ import { GameList } from "../../components/game/index";
 import { fetchAsyncGames } from "../../redux/utils/gameUtils";
 import { STATUS } from "../../utils/status";
 import { useNavigate } from "react-router-dom";
+import { join_image } from "../../utils/images";
+
+import { FaDiscord } from "react-icons/fa6";
 
 const HomePage = () => {
 	const dispatch = useDispatch();
@@ -50,10 +53,37 @@ const HomePage = () => {
 				</div>
 			</section>
 			<Banner />
+			<section
+				className="section sc-join d-flex align-items-center"
+				style={{
+					background: `linear-gradient(0deg,rgba(0,0,0,0.7),rgba(0,0,0,0.7)),url(${join_image}) center/cover no-repeat`,
+				}}
+			>
+				<div className="container w-100">
+					<div className="join-content text-white mx-auto text-center">
+						<h2 className="join-title mb-3">
+							Join The <span>Community</span>
+						</h2>
+						<p className="lead-text">Join our Discord. Built by Gamers for the Gamers. No matter the game you play, No matter your skill level. You are Welcome :).</p>
+
+						<div className="join-badge text-uppercase">
+							<div className="badge-content">
+								<span>Join Our Discord</span>
+								<FaDiscord
+									className="discord-icon"
+									size={32}
+								/>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
 		</HomeWrapper>
 	);
 };
-
+{
+	/* <div className="banner-badge text-uppercase">Join The Community</div> */
+}
 export default HomePage;
 
 const HomeWrapper = styled.div`
@@ -105,7 +135,7 @@ const HomeWrapper = styled.div`
 	}
 
 	.sc-join {
-		min-height: 640px;
+		min-height: 470px;
 
 		.join-content {
 			max-width: 600px;
@@ -119,6 +149,63 @@ const HomeWrapper = styled.div`
 			span {
 				color: var(--clr-purple-normal);
 				font-family: var(--font-family-right);
+			}
+		}
+
+		.join-badge {
+			background: rgba(88, 101, 242, 0.1);
+			padding: 1rem 2.5rem;
+			font-weight: 600;
+			font-size: 1.4rem;
+			display: inline-block;
+			margin: 27px 0;
+			border-radius: 14px;
+			box-shadow: 0 4px 15px rgba(88, 101, 242, 0.2);
+			transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+			position: relative;
+			overflow: hidden;
+			cursor: pointer;
+			border: 1px solid rgba(88, 101, 242, 0.3);
+			backdrop-filter: blur(8px);
+
+			&::before {
+				content: "";
+				position: absolute;
+				top: 0;
+				left: -100%;
+				width: 100%;
+				height: 100%;
+				background: linear-gradient(90deg, transparent, rgba(88, 101, 242, 0.2), transparent);
+				transition: 0.6s;
+			}
+
+			&:hover {
+				transform: translateY(-3px);
+				background: rgba(88, 101, 242, 0.15);
+				border-color: rgba(88, 101, 242, 0.5);
+				box-shadow: 0 8px 25px rgba(88, 101, 242, 0.3);
+
+				&::before {
+					left: 100%;
+				}
+
+				.discord-icon {
+					transform: scale(1.1) rotate(5deg);
+				}
+			}
+
+			.badge-content {
+				display: flex;
+				align-items: center;
+				gap: 1.2rem;
+				color: #fff;
+				text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+
+				.discord-icon {
+					color: #5865f2;
+					transition: all 0.4s ease;
+					filter: drop-shadow(0 2px 4px rgba(88, 101, 242, 0.3));
+				}
 			}
 		}
 	}
