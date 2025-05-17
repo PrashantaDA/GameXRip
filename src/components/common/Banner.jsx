@@ -11,7 +11,6 @@ const Banner = () => {
 			}}
 		>
 			<div className="banner-content w-50 text-white">
-				<div className="banner-badge text-uppercase">Join The Community</div>
 				<h1 className="banner-title text-uppercase">Best games to play</h1>
 				<p className="lead-text text-justify">
 					Step into the exhilarating world of live gaming, where you can explore an extensive selection of games spanning every genre imaginable. Whether you're a casual player or
@@ -65,7 +64,7 @@ const Banner = () => {
 export default Banner;
 
 const BannerWrapper = styled.div`
-	min-height: 400px;
+	min-height: 490px;
 	position: relative;
 	overflow: hidden;
 	padding: 4rem;
@@ -79,39 +78,6 @@ const BannerWrapper = styled.div`
 		height: 100%;
 		background: linear-gradient(45deg, rgba(157, 78, 221, 0.2), transparent);
 		pointer-events: none;
-	}
-
-	.banner-badge {
-		background: linear-gradient(45deg, var(--clr-purple-normal), #9d4edd);
-		padding: 12px 28px;
-		font-weight: 600;
-		font-size: 20px;
-		letter-spacing: 0.1em;
-		display: inline-block;
-		margin-bottom: 25px;
-		border-radius: 8px;
-		box-shadow: 0 4px 15px rgba(157, 78, 221, 0.2);
-		transform: translateY(0);
-		transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-		position: relative;
-		overflow: hidden;
-
-		&::before {
-			content: "";
-			position: absolute;
-			top: 0;
-			left: -100%;
-			width: 100%;
-			height: 100%;
-			background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-			transition: 0.5s;
-		}
-
-		&:hover {
-			&::before {
-				left: 100%;
-			}
-		}
 	}
 
 	.banner-title {
