@@ -1,36 +1,58 @@
 import { useEffect } from "react";
-import styled from "styled-components";
-import { Banner, ImageSlider, Preloader, Tabs, Title } from "../../components/common/index";
-import { useDispatch, useSelector } from "react-redux";
-import { selectAllGames, selectAllGamesStatus } from "../../redux/store/gameSlice";
-import { GameList } from "../../components/game/index";
-import { fetchAsyncGames } from "../../redux/utils/gameUtils";
-import { STATUS } from "../../utils/status";
 import { useNavigate } from "react-router-dom";
-import { join_image } from "../../utils/images";
+import styled from "styled-components";
+import { useDispatch, useSelector } from "react-redux";
 
+// Component imports
+import { Banner, ImageSlider, Preloader, Tabs, Title } from "../../components/common/index";
+import { GameList } from "../../components/game/index";
+
+// Utility imports
+import { STATUS } from "../../utils/status";
+import { join_image, store_image } from "../../utils/images";
+
+// Redux imports
+import { selectAllGames, selectAllGamesStatus } from "../../redux/store/gameSlice";
+import { selectAllGenres, selectAllGenresStatus } from "../../redux/store/genreSlice";
+import { fetchAsyncGames } from "../../redux/utils/gameUtils";
+import { fetchAsyncGenres } from "../../redux/utils/genreUtils";
+import { selectAllStores, selectAllStoresStatus } from "../../redux/store/storeSlice";
+import { StoreList } from "../../components/common/index";
+
+// Icon imports
 import { FaDiscord } from "react-icons/fa6";
 import { MdOutlineCategory } from "react-icons/md";
-import { selectAllGenres, selectAllGenresStatus } from "../../redux/store/genreSlice";
-import { fetchAsyncGenres } from "../../redux/utils/genreUtils";
 
+/**
+ * HomePage component - Main landing page of the application
+ * Displays featured games, genres, and community sections
+ */
 const HomePage = () => {
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
+
+	// Redux state selectors
 	const games = useSelector(selectAllGames);
 	const gamesStatus = useSelector(selectAllGamesStatus);
 	const genres = useSelector(selectAllGenres);
 	const genresStatus = useSelector(selectAllGenresStatus);
+	const stores = useSelector(selectAllStores);
+	const storesStatus = useSelector(selectAllStoresStatus);
 
+	// Fetch data on component mount
 	useEffect(() => {
 		dispatch(fetchAsyncGames());
 		dispatch(fetchAsyncGenres());
 	}, [dispatch]);
 
+	/**
+	 * Handles navigation to all games page
+	 */
 	const handleViewAllGames = () => {
 		navigate("/games", { replace: true });
 	};
 
+	// Renders popular games section with view all button
 	const renderedPopularGames = (
 		<>
 			<GameList
@@ -50,15 +72,21 @@ const HomePage = () => {
 
 	return (
 		<HomeWrapper>
+			{/* Hero Image Slider */}
 			<ImageSlider />
 
+			{/* Popular Games Section */}
 			<section className="section sc-popular">
 				<div className="container">
 					<Title titleName={{ firstText: "🔥Top", secondText: "Games" }} />
 					{gamesStatus === STATUS.LOADING ? <Preloader /> : games?.length > 0 ? renderedPopularGames : "No Games Found"}
 				</div>
 			</section>
+
+			{/* Banner Section */}
 			<Banner />
+
+			{/* Community Join Section */}
 			<section
 				className="section sc-join d-flex align-items-center"
 				style={{
@@ -85,6 +113,7 @@ const HomePage = () => {
 				</div>
 			</section>
 
+			{/* Genres Section */}
 			<section className="section sc-genres">
 				<div className="container">
 					<Title
@@ -105,15 +134,38 @@ const HomePage = () => {
 					)}
 				</div>
 			</section>
+
+			{/* Stores Section */}
+			<section
+				className="section sc-stores"
+				style={{
+					background: `linear-gradient(180deg,rgba(12,10,36,0.79)0%,rgba(0,0,0,0.90) 72.92%),url(${store_image}) center/cover no-repeat`,
+				}}
+			>
+				<div className="container">
+					<Title
+						titleName={{
+							firstText: "Game",
+							secondText: "Stores💸",
+						}}
+					/>
+					{storesStatus === STATUS.LOADING ? <Preloader /> : stores?.length > 0 ? <StoreList stores={stores} /> : "No stores found"}
+				</div>
+			</section>
 		</HomeWrapper>
 	);
 };
 
 export default HomePage;
 
+/**
+ * Styled components for HomePage
+ */
 const HomeWrapper = styled.div`
+	/* Popular Games Section Styles */
 	.sc-popular {
 		background-color: var(--clr-violet-darker);
+
 		.section-btn {
 			margin-top: 60px;
 			background: var(--clr-purple-normal);
@@ -159,6 +211,7 @@ const HomeWrapper = styled.div`
 		}
 	}
 
+	/* Community Join Section Styles */
 	.sc-join {
 		min-height: 470px;
 
