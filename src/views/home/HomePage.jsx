@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import styled from "styled-components";
-import { Banner, ImageSlider, Preloader, Title } from "../../components/common/index";
+import { Banner, ImageSlider, Preloader, Tabs, Title } from "../../components/common/index";
 import { useDispatch, useSelector } from "react-redux";
 import { selectAllGames, selectAllGamesStatus } from "../../redux/store/gameSlice";
 import { GameList } from "../../components/game/index";
@@ -10,15 +10,21 @@ import { useNavigate } from "react-router-dom";
 import { join_image } from "../../utils/images";
 
 import { FaDiscord } from "react-icons/fa6";
+import { MdOutlineCategory } from "react-icons/md";
+import { selectAllGenres, selectAllGenresStatus } from "../../redux/store/genreSlice";
+import { fetchAsyncGenres } from "../../redux/utils/genreUtils";
 
 const HomePage = () => {
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
 	const games = useSelector(selectAllGames);
 	const gamesStatus = useSelector(selectAllGamesStatus);
+	const genres = useSelector(selectAllGenres);
+	const genresStatus = useSelector(selectAllGenresStatus);
 
 	useEffect(() => {
 		dispatch(fetchAsyncGames());
+		dispatch(fetchAsyncGenres());
 	}, [dispatch]);
 
 	const handleViewAllGames = () => {
@@ -78,12 +84,31 @@ const HomePage = () => {
 					</div>
 				</div>
 			</section>
+
+			<section className="section sc-genres">
+				<div className="container">
+					<Title
+						titleName={{
+							firstText: <MdOutlineCategory />,
+							secondText: "Genres",
+						}}
+					/>
+					{genresStatus === STATUS.LOADING ? (
+						<Preloader />
+					) : genres?.length > 0 ? (
+						<Tabs
+							sliceValue={9}
+							data={genres}
+						/>
+					) : (
+						"No available genres!!"
+					)}
+				</div>
+			</section>
 		</HomeWrapper>
 	);
 };
-{
-	/* <div className="banner-badge text-uppercase">Join The Community</div> */
-}
+
 export default HomePage;
 
 const HomeWrapper = styled.div`
