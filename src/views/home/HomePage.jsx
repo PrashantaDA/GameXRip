@@ -9,7 +9,7 @@ import { GameList } from "../../components/game/index";
 
 // Utility imports
 import { STATUS } from "../../utils/status";
-import { join_image, store_image } from "../../utils/images";
+import { join_image, store_image, PA_bg, MK_bg } from "../../utils/images";
 
 // Redux imports
 import { selectAllGames, selectAllGamesStatus } from "../../redux/store/gameSlice";
@@ -17,11 +17,12 @@ import { selectAllGenres, selectAllGenresStatus } from "../../redux/store/genreS
 import { fetchAsyncGames } from "../../redux/utils/gameUtils";
 import { fetchAsyncGenres } from "../../redux/utils/genreUtils";
 import { selectAllStores, selectAllStoresStatus } from "../../redux/store/storeSlice";
-import { StoreList } from "../../components/common/index";
+import { StoreList } from "../../components/store/index";
 
 // Icon imports
 import { FaDiscord } from "react-icons/fa6";
 import { MdOutlineCategory } from "react-icons/md";
+import { fetchAsyncStores } from "../../redux/utils/storeUtils";
 
 /**
  * HomePage component - Main landing page of the application
@@ -43,6 +44,7 @@ const HomePage = () => {
 	useEffect(() => {
 		dispatch(fetchAsyncGames());
 		dispatch(fetchAsyncGenres());
+		dispatch(fetchAsyncStores());
 	}, [dispatch]);
 
 	/**
@@ -76,7 +78,12 @@ const HomePage = () => {
 			<ImageSlider />
 
 			{/* Popular Games Section */}
-			<section className="section sc-popular">
+			<section
+				className="section sc-popular"
+				style={{
+					background: `linear-gradient(180deg, rgba(12, 10, 36, 0.79) 0%, rgba(0, 0, 0, 0.90) 72.92%), url(${MK_bg}) center/cover no-repeat fixed`,
+				}}
+			>
 				<div className="container">
 					<Title titleName={{ firstText: "🔥Top", secondText: "Games" }} />
 					{gamesStatus === STATUS.LOADING ? <Preloader /> : games?.length > 0 ? renderedPopularGames : "No Games Found"}
@@ -114,7 +121,12 @@ const HomePage = () => {
 			</section>
 
 			{/* Genres Section */}
-			<section className="section sc-genres">
+			<section
+				className="section sc-genres"
+				style={{
+					background: `linear-gradient(180deg, rgba(12, 10, 36, 0.79) 0%, rgba(0, 0, 0, 0.90) 72.92%), url(${PA_bg}) center/cover no-repeat fixed`,
+				}}
+			>
 				<div className="container">
 					<Title
 						titleName={{
