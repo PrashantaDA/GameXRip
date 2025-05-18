@@ -27,7 +27,7 @@ const ImageSlider = () => {
 				breakpoint: 992,
 				settings: {
 					slidesToShow: 1,
-					centerPadding: "140px",
+					centerPadding: "72px",
 				},
 			},
 			{
@@ -35,7 +35,7 @@ const ImageSlider = () => {
 				settings: {
 					slidesToShow: 1,
 					dots: false,
-					centerPadding: "90px",
+					centerPadding: "36px",
 				},
 			},
 		],
@@ -50,7 +50,7 @@ const ImageSlider = () => {
 				>
 					{sliderImages?.map((image, idx) => (
 						<div
-							className="slider-item img-fit-cover"
+							className="slider-item"
 							key={idx}
 						>
 							<img
@@ -85,11 +85,13 @@ const ImageSliderWrapper = styled.div`
 	.game-slider {
 		.slider-item {
 			height: 400px;
-			padding: 16px;
+			padding: 60px;
 			outline: 0;
 
 			img {
-				border: 2px solid var(--clr-red-normal);
+				height: 360px;
+				object-fit: fill;
+				aspect-ratio: 16/9;
 			}
 		}
 
@@ -134,6 +136,14 @@ const ImageSliderWrapper = styled.div`
 			right: 16px !important;
 			z-index: 5;
 			transform: scale(1.4);
+		}
+	}
+
+	@media screen and (min-width: 992px) {
+		.game-slider {
+			.slider-item {
+				padding: 30px;
+			}
 		}
 	}
 `;
