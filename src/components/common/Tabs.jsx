@@ -3,13 +3,18 @@ import styled from "styled-components";
 import PropTypes from "prop-types";
 import { AiOutlineMenu, AiOutlineArrowLeft, AiOutlineArrowRight } from "react-icons/ai";
 import GenreItem from "../genre/GenreItem";
+import axios from "../../api/axios";
+import { apiURL } from "../../constants";
 
-const Tabs = ({ data }) => {
+const API_KEY = import.meta.env.VITE_API_KEY;
+
+const Tabs = ({ data, sliceValue = 9 }) => {
 	const [activeTab, setActiveTab] = useState(data[0]);
 	const [tabButtonStatus, setTabButtonStatus] = useState(false);
 	const [isMobile, setIsMobile] = useState(window.innerWidth <= 992);
 	const [currentPages, setCurrentPages] = useState({});
-	const gamesPerPage = 9;
+	const [genreGames, setGenreGames] = useState({});
+	const [loading, setLoading] = useState(false);
 
 	useEffect(() => {
 		const handleResize = () => {
@@ -34,6 +39,30 @@ const Tabs = ({ data }) => {
 		setCurrentPages((prev) => ({ ...prev, ...initialPages }));
 	}, [data]);
 
+	// Fetch games for a genre
+	const fetchGenreGames = async (genreId) => {
+		if (genreGames[genreId]) return; // Don't fetch if we already have the games
+
+		setLoading(true);
+		try {
+			const { data } = await axios.get(`${apiURL.gamesURL}?${API_KEY}&genres=${genreId}&page_size=40`);
+			setGenreGames((prev) => ({
+				...prev,
+				[genreId]: data.results,
+			}));
+		} catch (error) {
+			console.error("Error fetching genre games:", error);
+		}
+		setLoading(false);
+	};
+
+	// Fetch games when active tab changes
+	useEffect(() => {
+		if (activeTab?.id) {
+			fetchGenreGames(activeTab.id);
+		}
+	}, [activeTab]);
+
 	const tabClickHandler = (id) => {
 		data.map((item) => {
 			if (item.id === id) {
@@ -55,14 +84,15 @@ const Tabs = ({ data }) => {
 	};
 
 	const getCurrentPageGames = (games) => {
+		if (!games) return [];
 		const currentPage = currentPages[activeTab.id] || 1;
-		const startIndex = (currentPage - 1) * gamesPerPage;
-		const endIndex = startIndex + gamesPerPage;
-		return games?.slice(startIndex, endIndex);
+		const startIndex = (currentPage - 1) * sliceValue;
+		const endIndex = startIndex + sliceValue;
+		return games.slice(startIndex, endIndex);
 	};
 
-	const totalPages = Math.ceil((activeTab?.games?.length || 0) / gamesPerPage);
-	const currentPage = currentPages[activeTab.id] || 1;
+	const totalPages = Math.ceil((genreGames[activeTab?.id]?.length || 0) / sliceValue);
+	const currentPage = currentPages[activeTab?.id] || 1;
 
 	return (
 		<TabsWrapper>
@@ -107,36 +137,42 @@ const Tabs = ({ data }) => {
 						</ul>
 					</div>
 					<div className="tabs-body">
-						<div className="card-list">
-							{getCurrentPageGames(activeTab?.games)?.map((item) => (
-								<GenreItem
-									key={item?.id}
-									gameItem={item}
-								/>
-							))}
-						</div>
-						{totalPages > 1 && (
-							<div className="pagination-controls">
-								<button
-									className="pagination-btn"
-									onClick={() => handlePageChange(activeTab.id, currentPage - 1)}
-									disabled={currentPage === 1}
-								>
-									<AiOutlineArrowLeft />
-									Previous
-								</button>
-								<span className="page-info">
-									Page {currentPage} of {totalPages}
-								</span>
-								<button
-									className="pagination-btn"
-									onClick={() => handlePageChange(activeTab.id, currentPage + 1)}
-									disabled={currentPage === totalPages}
-								>
-									Next
-									<AiOutlineArrowRight />
-								</button>
-							</div>
+						{loading ? (
+							<div className="loading-state">Loading games...</div>
+						) : (
+							<>
+								<div className="card-list">
+									{getCurrentPageGames(genreGames[activeTab?.id])?.map((item) => (
+										<GenreItem
+											key={item?.id}
+											gameItem={item}
+										/>
+									))}
+								</div>
+								{totalPages > 1 && (
+									<div className="pagination-controls">
+										<button
+											className="pagination-btn"
+											onClick={() => handlePageChange(activeTab.id, currentPage - 1)}
+											disabled={currentPage === 1}
+										>
+											<AiOutlineArrowLeft />
+											Previous
+										</button>
+										<span className="page-info">
+											Page {currentPage} of {totalPages}
+										</span>
+										<button
+											className="pagination-btn"
+											onClick={() => handlePageChange(activeTab.id, currentPage + 1)}
+											disabled={currentPage === totalPages}
+										>
+											Next
+											<AiOutlineArrowRight />
+										</button>
+									</div>
+								)}
+							</>
 						)}
 					</div>
 				</div>
@@ -528,6 +564,17 @@ const TabsWrapper = styled.div`
 			grid-template-columns: 1fr;
 			gap: 16px;
 		}
+	}
+
+	.loading-state {
+		text-align: center;
+		color: var(--clr-white);
+		font-size: 1.8rem;
+		padding: 40px;
+		background: rgba(255, 255, 255, 0.05);
+		border-radius: 12px;
+		backdrop-filter: blur(10px);
+		border: 1px solid rgba(255, 255, 255, 0.1);
 	}
 
 	.pagination-controls {
