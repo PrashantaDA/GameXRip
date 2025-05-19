@@ -81,6 +81,12 @@ const Tabs = ({ data, sliceValue }) => {
 			...prev,
 			[genreId]: newPage,
 		}));
+
+		// Scroll to the top of the tabs component
+		const tabsElement = document.querySelector(".tabs-content");
+		if (tabsElement) {
+			tabsElement.scrollIntoView({ behavior: "smooth", block: "start" });
+		}
 	};
 
 	const getCurrentPageGames = (games) => {
