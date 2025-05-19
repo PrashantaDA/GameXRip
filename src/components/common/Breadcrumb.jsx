@@ -1,10 +1,46 @@
 import styled from "styled-components";
+import PropTypes from "prop-types";
+import useReactRouterBreadcrumbs from "use-react-router-breadcrumbs";
+import { Link } from "react-router-dom";
 
-const Breadcrumb = () => {
-	return <BreadcrumbWrapper></BreadcrumbWrapper>;
+const Breadcrumb = ({ dataNameById }) => {
+	const breadcrumbs = useReactRouterBreadcrumbs();
+
+	return (
+		<BreadcrumbWrapper>
+			{breadcrumbs.map(({ match, breadcrumb }) => {
+				// For the last breadcrumb (game details), use the game name
+				if (match.pathname.includes("/games/")) {
+					return (
+						<Link
+							className="breadcrumb-item"
+							to={match.pathname}
+							key={match.pathname}
+						>
+							{dataNameById || match.params.gameId}
+						</Link>
+					);
+				}
+				// For other breadcrumbs, use the default breadcrumb
+				return (
+					<Link
+						className="breadcrumb-item"
+						to={match.pathname}
+						key={match.pathname}
+					>
+						{breadcrumb}
+					</Link>
+				);
+			})}
+		</BreadcrumbWrapper>
+	);
 };
 
 export default Breadcrumb;
+
+Breadcrumb.propTypes = {
+	dataNameById: PropTypes.string,
+};
 
 const BreadcrumbWrapper = styled.div`
 	margin: 13px 0;
