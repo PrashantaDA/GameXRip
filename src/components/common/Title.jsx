@@ -23,10 +23,10 @@ const TitleWrapper = styled.div`
 	text-align: center;
 	font-weight: 800;
 	font-size: 32px;
-	letter-spacing: 0.1em;
+	letter-spacing: 0.07em;
 	color: var(--clr-white);
 	margin-bottom: 40px;
-	font-family: var(--font-family-poppins);
+	/* font-family: var(--font-family-poppins); */
 
 	h3 {
 		text-transform: uppercase;
