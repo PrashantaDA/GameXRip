@@ -138,7 +138,7 @@ const HomePage = () => {
 						<Preloader />
 					) : genres?.length > 0 ? (
 						<Tabs
-							sliceValue={9}
+							sliceValue={6}
 							data={genres}
 						/>
 					) : (

@@ -8,7 +8,7 @@ import { apiURL } from "../../constants";
 
 const API_KEY = import.meta.env.VITE_API_KEY;
 
-const Tabs = ({ data, sliceValue = 9 }) => {
+const Tabs = ({ data, sliceValue }) => {
 	const [activeTab, setActiveTab] = useState(data[0]);
 	const [tabButtonStatus, setTabButtonStatus] = useState(false);
 	const [isMobile, setIsMobile] = useState(window.innerWidth <= 992);
@@ -45,7 +45,7 @@ const Tabs = ({ data, sliceValue = 9 }) => {
 
 		setLoading(true);
 		try {
-			const { data } = await axios.get(`${apiURL.gamesURL}?${API_KEY}&genres=${genreId}&page_size=40`);
+			const { data } = await axios.get(`${apiURL.gamesURL}?${API_KEY}&genres=${genreId}&page_size=60`);
 			setGenreGames((prev) => ({
 				...prev,
 				[genreId]: data.results,
@@ -157,17 +157,15 @@ const Tabs = ({ data, sliceValue = 9 }) => {
 											disabled={currentPage === 1}
 										>
 											<AiOutlineArrowLeft />
-											Previous
 										</button>
 										<span className="page-info">
-											Page {currentPage} of {totalPages}
+											{currentPage} / {totalPages}
 										</span>
 										<button
 											className="pagination-btn"
 											onClick={() => handlePageChange(activeTab.id, currentPage + 1)}
 											disabled={currentPage === totalPages}
 										>
-											Next
 											<AiOutlineArrowRight />
 										</button>
 									</div>
@@ -581,36 +579,57 @@ const TabsWrapper = styled.div`
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		gap: 20px;
+		gap: 24px;
 		margin-top: 40px;
-		padding: 20px;
-		background: rgba(255, 255, 255, 0.05);
-		border-radius: 12px;
+		padding: 24px;
+		background: rgba(255, 255, 255, 0.03);
+		border-radius: 16px;
 		backdrop-filter: blur(10px);
-		border: 1px solid rgba(255, 255, 255, 0.1);
+		border: 1px solid rgba(255, 255, 255, 0.08);
+		box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
 
 		.pagination-btn {
 			display: flex;
 			align-items: center;
-			gap: 8px;
-			padding: 12px 24px;
-			background: var(--clr-purple-normal);
+			gap: 10px;
+			padding: 14px 28px;
+			background: var(--clr-violet-dark);
 			color: white;
-			border: none;
-			border-radius: 8px;
+			border: 1px solid rgba(255, 255, 255, 0.1);
+			border-radius: 12px;
 			font-weight: 600;
+			font-size: 15px;
 			cursor: pointer;
-			transition: all 0.3s ease;
-			box-shadow: 0 4px 12px rgba(108, 92, 231, 0.2);
+			transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+			box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 
 			&:hover:not(:disabled) {
 				transform: translateY(-2px);
+				background: var(--clr-purple-normal);
 				box-shadow: 0 6px 16px rgba(108, 92, 231, 0.3);
+				border-color: rgba(255, 255, 255, 0.2);
+			}
+
+			&:active:not(:disabled) {
+				transform: translateY(0);
 			}
 
 			&:disabled {
 				opacity: 0.5;
 				cursor: not-allowed;
+				background: var(--clr-violet-dark);
+				transform: none;
+				box-shadow: none;
+			}
+
+			svg {
+				width: 20px;
+				height: 20px;
+				transition: transform 0.3s ease;
+			}
+
+			&:hover:not(:disabled) svg {
+				transform: scale(1.1);
 			}
 		}
 
@@ -619,6 +638,10 @@ const TabsWrapper = styled.div`
 			font-weight: 500;
 			font-size: 16px;
 			text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+			background: rgba(255, 255, 255, 0.05);
+			padding: 12px 24px;
+			border-radius: 12px;
+			border: 1px solid rgba(255, 255, 255, 0.08);
 		}
 	}
 `;
