@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 // Component imports
 import { Banner, ImageSlider, Preloader, Tabs, Title } from "../../components/common/index";
 import { GameList } from "../../components/game/index";
+import GameSkeleton from "../../components/common/GameSkeleton";
 
 // Utility imports
 import { STATUS } from "../../utils/status";
@@ -86,7 +87,7 @@ const HomePage = () => {
 			>
 				<div className="container">
 					<Title titleName={{ firstText: "🔥Top", secondText: "Games" }} />
-					{gamesStatus === STATUS.LOADING ? <Preloader /> : games?.length > 0 ? renderedPopularGames : "No Games Found"}
+					{gamesStatus === STATUS.LOADING ? <GameSkeleton count={9} /> : games?.length > 0 ? renderedPopularGames : "No Games Found"}
 				</div>
 			</section>
 
@@ -151,7 +152,7 @@ const HomePage = () => {
 			<section
 				className="section sc-stores"
 				style={{
-					background: `linear-gradient(180deg,rgba(12,10,36,0.70)0%,rgba(0,0,0,0.70) 72.92%),url(${store_image}) center/cover no-repeat`,
+					background: `linear-gradient(180deg,rgba(12,10,36,0.50)0%,rgba(0,0,0,0.60) 72.92%),url(${store_image}) center/cover no-repeat`,
 				}}
 			>
 				<div className="container">
@@ -306,5 +307,74 @@ const HomeWrapper = styled.div`
 
 	.sc-stores {
 		min-height: 841px;
+		position: relative;
+		overflow: hidden;
+		padding: 80px 0;
+
+		&::before {
+			content: "";
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			z-index: 1;
+		}
+
+		&::after {
+			content: "";
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+
+			z-index: 1;
+			pointer-events: none;
+			animation: pulse 8s ease-in-out infinite;
+		}
+
+		.container {
+			position: relative;
+			z-index: 2;
+		}
+
+		.title {
+			position: relative;
+			margin-bottom: 60px;
+			text-align: center;
+
+			&::after {
+				content: "";
+				position: absolute;
+				bottom: -20px;
+				left: 50%;
+				transform: translateX(-50%);
+				width: 100px;
+				height: 4px;
+				background: linear-gradient(90deg, transparent, var(--clr-purple-normal), transparent);
+				border-radius: 2px;
+				animation: shimmer 2s infinite;
+			}
+		}
+	}
+
+	@keyframes pulse {
+		0%,
+		100% {
+			opacity: 0.5;
+		}
+		50% {
+			opacity: 1;
+		}
+	}
+
+	@keyframes shimmer {
+		0% {
+			background-position: -100% 0;
+		}
+		100% {
+			background-position: 200% 0;
+		}
 	}
 `;

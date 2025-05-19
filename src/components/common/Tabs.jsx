@@ -5,10 +5,11 @@ import { AiOutlineMenu, AiOutlineArrowLeft, AiOutlineArrowRight } from "react-ic
 import GenreItem from "../genre/GenreItem";
 import axios from "../../api/axios";
 import { apiURL } from "../../constants";
+import GameSkeleton from "./GameSkeleton";
 
 const API_KEY = import.meta.env.VITE_API_KEY;
 
-const Tabs = ({ data, sliceValue }) => {
+const Tabs = ({ data, sliceValue = 9 }) => {
 	const [activeTab, setActiveTab] = useState(data[0]);
 	const [tabButtonStatus, setTabButtonStatus] = useState(false);
 	const [isMobile, setIsMobile] = useState(window.innerWidth <= 992);
@@ -144,7 +145,7 @@ const Tabs = ({ data, sliceValue }) => {
 					</div>
 					<div className="tabs-body">
 						{loading ? (
-							<div className="loading-state">Loading games...</div>
+							<GameSkeleton count={sliceValue} />
 						) : (
 							<>
 								<div className="card-list">
@@ -640,14 +641,32 @@ const TabsWrapper = styled.div`
 		}
 
 		.page-info {
-			color: white;
-			font-weight: 500;
 			font-size: 16px;
+			font-weight: 600;
+			color: #fff;
 			text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-			background: rgba(255, 255, 255, 0.05);
-			padding: 12px 24px;
-			border-radius: 12px;
-			border: 1px solid rgba(255, 255, 255, 0.08);
+		}
+
+		@media screen and (max-width: 480px) {
+			padding: 16px;
+			gap: 16px;
+			margin-top: 32px;
+
+			.pagination-btn {
+				padding: 10px 20px;
+				font-size: 14px;
+
+				svg {
+					width: 16px;
+					height: 16px;
+				}
+			}
+
+			.page-info {
+				font-size: 14px;
+				min-width: 60px;
+				text-align: center;
+			}
 		}
 	}
 `;

@@ -27,15 +27,15 @@ const ImageSlider = () => {
 				breakpoint: 992,
 				settings: {
 					slidesToShow: 1,
-					centerPadding: "72px",
+					centerPadding: "70px",
 				},
 			},
 			{
 				breakpoint: 768,
 				settings: {
+					centerPadding: "0px",
 					slidesToShow: 1,
 					dots: false,
-					centerPadding: "36px",
 				},
 			},
 		],
@@ -74,12 +74,8 @@ const ImageSliderWrapper = styled.div`
 	overflow: hidden;
 
 	.slider-background {
-		position: relative;
-		background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("/PA_bg.jpg");
-		background-size: cover;
-		background-position: center;
-		background-attachment: fixed;
-		padding: 36px 0;
+		background: linear-gradient(rgba(0, 0, 0, 0.99), rgba(0, 0, 0, 0.92));
+		padding: 90px 9px;
 	}
 
 	.game-slider {
@@ -90,20 +86,21 @@ const ImageSliderWrapper = styled.div`
 
 			img {
 				height: 360px;
+
 				object-fit: fill;
 				aspect-ratio: 16/9;
 			}
 		}
 
 		.slick-list {
-			padding-top: 90px !important;
-			padding-bottom: 90px !important;
+			padding-top: 20px !important;
+			padding-bottom: 20px !important;
 		}
 
 		.slick-dots {
 			li {
 				height: 10px;
-				width: 60px;
+				width: 36px;
 				button {
 					&::before {
 						width: 100% !important;
@@ -121,29 +118,21 @@ const ImageSliderWrapper = styled.div`
 		}
 
 		.slick-center {
-			transform: scale(1.5);
+			transform: scale(1.6);
 		}
 
 		.slick-prev {
 			position: absolute;
 			left: 16px !important;
 			z-index: 5;
-			transform: scale(1.4);
+			transform: scale(1.2);
 		}
 
 		.slick-next {
 			position: absolute;
 			right: 16px !important;
 			z-index: 5;
-			transform: scale(1.4);
-		}
-	}
-
-	@media screen and (min-width: 992px) {
-		.game-slider {
-			.slider-item {
-				padding: 30px;
-			}
+			transform: scale(1.2);
 		}
 	}
 `;

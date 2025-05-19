@@ -20,7 +20,7 @@ const Navbar = () => {
 							to="/"
 							className="navbar-brand text-white text-uppercase no-wrap"
 						>
-							Game<span>X</span>Rip
+							Game<span className="logo-x">X</span>Rip
 						</Link>
 						<button
 							type="button"
@@ -121,23 +121,27 @@ export default Navbar;
 
 const NavbarWrapper = styled.div`
 	min-height: 70px;
-	background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 50%, #0a0a0a 100%);
+	background: linear-gradient(180deg, #000 0%, #090927 50%, #000 100%);
+
 	box-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
 	position: sticky;
 	top: 0;
 	z-index: 1000;
+	border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 
 	.navbar-brand {
 		font-weight: 700;
-		font-size: 32px;
+		font-size: 24px;
 		position: relative;
 		transition: all 0.3s ease;
 		text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+		font-family: "Stalinist One", sans-serif;
 
 		span {
 			color: #b91919;
 			position: relative;
 			text-shadow: 0 0 10px rgba(185, 25, 25, 0.5);
+			font-size: 32px;
 
 			&::after {
 				content: "";
@@ -278,7 +282,7 @@ const NavbarWrapper = styled.div`
 		top: 0;
 		width: 280px;
 		height: 100%;
-		background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 50%, #0a0a0a 100%);
+		background: linear-gradient(180deg, #0a0a0a 0%, #0a0a2e 50%, #0a0a0a 100%);
 		box-shadow: -5px 0 25px rgba(0, 0, 0, 0.5);
 		padding: 60px 20px 16px;
 		text-align: center;
