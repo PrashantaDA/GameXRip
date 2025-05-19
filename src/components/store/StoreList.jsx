@@ -1,10 +1,15 @@
 import styled from "styled-components";
+import PropTypes from "prop-types";
 
-const StoreList = () => {
+const StoreList = ({ stores }) => {
 	return <StoreListWrapper></StoreListWrapper>;
 };
 
 export default StoreList;
+
+StoreList.propTypes = {
+	stores: PropTypes.array,
+};
 
 const StoreListWrapper = styled.div`
 	.store-list {

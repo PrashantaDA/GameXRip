@@ -1,11 +1,13 @@
-import styled from "styled-components";
-import PropTypes from "prop-types";
 import { useEffect, useState } from "react";
-import axios from "../../api/axios";
-import { apiURL } from "../../constants";
+import styled from "styled-components";
 import { BsStar } from "react-icons/bs";
 import { Link } from "react-router-dom";
+
+import { apiURL } from "../../constants";
 import { StarRating } from "../common/index";
+import axios from "../../api/axios";
+
+import PropTypes from "prop-types";
 
 const API_KEY = import.meta.env.VITE_API_KEY;
 
@@ -39,7 +41,7 @@ const GenreItem = ({ gameItem }) => {
 				</div>
 			</div>
 			<div className="card-bottom">
-				<h4 className="text-white text-uppercase card-title">{gameData?.name || "Untitled Game"}</h4>
+				<h4 className="text-white text-uppercase card-title">{gameData?.name || ""}</h4>
 				<Link
 					to={`/games/${gameData?.id}`}
 					className="card-button text-uppercase"

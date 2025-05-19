@@ -38,7 +38,7 @@ const GameItem = ({ gameItem }) => {
 				</div>
 			</div>
 			<div className="card-bottom">
-				<h4 className="text-white text-uppercase card-title">{gameItem?.name || "Untitled Game"}</h4>
+				<h4 className="text-white text-uppercase card-title">{gameItem?.name || ""}</h4>
 				<div className="block-wrap">
 					<div className="details-group">
 						<div className="details-item">

@@ -1,13 +1,15 @@
 import { useState, useEffect } from "react";
 import styled from "styled-components";
 import PropTypes from "prop-types";
-import { AiOutlineMenu } from "react-icons/ai";
+import { AiOutlineMenu, AiOutlineArrowLeft, AiOutlineArrowRight } from "react-icons/ai";
 import GenreItem from "../genre/GenreItem";
 
 const Tabs = ({ data }) => {
 	const [activeTab, setActiveTab] = useState(data[0]);
 	const [tabButtonStatus, setTabButtonStatus] = useState(false);
 	const [isMobile, setIsMobile] = useState(window.innerWidth <= 992);
+	const [currentPages, setCurrentPages] = useState({});
+	const gamesPerPage = 9;
 
 	useEffect(() => {
 		const handleResize = () => {
@@ -21,6 +23,17 @@ const Tabs = ({ data }) => {
 		return () => window.removeEventListener("resize", handleResize);
 	}, []);
 
+	// Initialize current page for each genre if not set
+	useEffect(() => {
+		const initialPages = {};
+		data.forEach((genre) => {
+			if (!currentPages[genre.id]) {
+				initialPages[genre.id] = 1;
+			}
+		});
+		setCurrentPages((prev) => ({ ...prev, ...initialPages }));
+	}, [data]);
+
 	const tabClickHandler = (id) => {
 		data.map((item) => {
 			if (item.id === id) {
@@ -33,6 +46,23 @@ const Tabs = ({ data }) => {
 	};
 
 	const tabButtonsHandler = () => setTabButtonStatus((prevStatus) => !prevStatus);
+
+	const handlePageChange = (genreId, newPage) => {
+		setCurrentPages((prev) => ({
+			...prev,
+			[genreId]: newPage,
+		}));
+	};
+
+	const getCurrentPageGames = (games) => {
+		const currentPage = currentPages[activeTab.id] || 1;
+		const startIndex = (currentPage - 1) * gamesPerPage;
+		const endIndex = startIndex + gamesPerPage;
+		return games?.slice(startIndex, endIndex);
+	};
+
+	const totalPages = Math.ceil((activeTab?.games?.length || 0) / gamesPerPage);
+	const currentPage = currentPages[activeTab.id] || 1;
 
 	return (
 		<TabsWrapper>
@@ -78,13 +108,36 @@ const Tabs = ({ data }) => {
 					</div>
 					<div className="tabs-body">
 						<div className="card-list">
-							{activeTab?.games?.map((item) => (
+							{getCurrentPageGames(activeTab?.games)?.map((item) => (
 								<GenreItem
 									key={item?.id}
 									gameItem={item}
 								/>
 							))}
 						</div>
+						{totalPages > 1 && (
+							<div className="pagination-controls">
+								<button
+									className="pagination-btn"
+									onClick={() => handlePageChange(activeTab.id, currentPage - 1)}
+									disabled={currentPage === 1}
+								>
+									<AiOutlineArrowLeft />
+									Previous
+								</button>
+								<span className="page-info">
+									Page {currentPage} of {totalPages}
+								</span>
+								<button
+									className="pagination-btn"
+									onClick={() => handlePageChange(activeTab.id, currentPage + 1)}
+									disabled={currentPage === totalPages}
+								>
+									Next
+									<AiOutlineArrowRight />
+								</button>
+							</div>
+						)}
 					</div>
 				</div>
 			</div>
@@ -474,6 +527,51 @@ const TabsWrapper = styled.div`
 		@media screen and (max-width: 480px) {
 			grid-template-columns: 1fr;
 			gap: 16px;
+		}
+	}
+
+	.pagination-controls {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		gap: 20px;
+		margin-top: 40px;
+		padding: 20px;
+		background: rgba(255, 255, 255, 0.05);
+		border-radius: 12px;
+		backdrop-filter: blur(10px);
+		border: 1px solid rgba(255, 255, 255, 0.1);
+
+		.pagination-btn {
+			display: flex;
+			align-items: center;
+			gap: 8px;
+			padding: 12px 24px;
+			background: var(--clr-purple-normal);
+			color: white;
+			border: none;
+			border-radius: 8px;
+			font-weight: 600;
+			cursor: pointer;
+			transition: all 0.3s ease;
+			box-shadow: 0 4px 12px rgba(108, 92, 231, 0.2);
+
+			&:hover:not(:disabled) {
+				transform: translateY(-2px);
+				box-shadow: 0 6px 16px rgba(108, 92, 231, 0.3);
+			}
+
+			&:disabled {
+				opacity: 0.5;
+				cursor: not-allowed;
+			}
+		}
+
+		.page-info {
+			color: white;
+			font-weight: 500;
+			font-size: 16px;
+			text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 		}
 	}
 `;

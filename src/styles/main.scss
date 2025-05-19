@@ -12,6 +12,10 @@
 	--clr-violet-light: #100e2b;
 	--clr-purple-normal: #7851a9;
 	--clr-red-normal: #b91919;
+	--clr-gradient-purple: linear-gradient(135deg, #7851a9 0%, #4b2e83 100%);
+	--clr-gradient-blue: linear-gradient(135deg, #1a237e 0%, #0d47a1 100%);
+	--clr-gradient-red: linear-gradient(135deg, #b91919 0%, #8e0000 100%);
+	--clr-gradient-dark: linear-gradient(135deg, #050415 0%, #04020e 100%);
 	--font-family-barlow: "Barlow", sans-serif;
 	--font-family-poppins: "Poppins", sans-serif;
 	--font-family-right: "Space Grotesk", cursive;

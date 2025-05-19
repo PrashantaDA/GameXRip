@@ -124,7 +124,7 @@ const HomePage = () => {
 			<section
 				className="section sc-genres"
 				style={{
-					background: `linear-gradient(180deg, rgba(12, 10, 36, 0.79) 0%, rgba(0, 0, 0, 0.90) 72.92%), url(${PA_bg}) center/cover no-repeat fixed`,
+					background: `linear-gradient(180deg, rgba(12, 10, 36, 0.70) 0%, rgba(0, 0, 0, 0.70) 72.92%), url(${PA_bg}) center/cover no-repeat fixed`,
 				}}
 			>
 				<div className="container">
@@ -151,7 +151,7 @@ const HomePage = () => {
 			<section
 				className="section sc-stores"
 				style={{
-					background: `linear-gradient(180deg,rgba(12,10,36,0.79)0%,rgba(0,0,0,0.90) 72.92%),url(${store_image}) center/cover no-repeat`,
+					background: `linear-gradient(180deg,rgba(12,10,36,0.70)0%,rgba(0,0,0,0.70) 72.92%),url(${store_image}) center/cover no-repeat`,
 				}}
 			>
 				<div className="container">
@@ -301,7 +301,7 @@ const HomeWrapper = styled.div`
 	}
 
 	.sc-genres {
-		background-color: var(--clr-violet-dark-active);
+		background-color: var(--clr-violet-darker);
 	}
 
 	.sc-stores {
