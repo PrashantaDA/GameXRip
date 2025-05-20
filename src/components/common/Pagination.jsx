@@ -34,7 +34,7 @@ const Pagination = ({ pageHandler, prevPage, currentPage, nextPage }) => {
 
 	const pagePrevHandler = () => {
 		if (prevPage !== null) {
-			const newPage = --currentPage;
+			const newPage = currentPage - 1;
 			pageHandler(newPage);
 			updatePageInURL(newPage);
 			scrollToTop();
@@ -43,7 +43,7 @@ const Pagination = ({ pageHandler, prevPage, currentPage, nextPage }) => {
 
 	const pageNextHandler = () => {
 		if (nextPage !== null) {
-			const newPage = ++currentPage;
+			const newPage = currentPage + 1;
 			pageHandler(newPage);
 			updatePageInURL(newPage);
 			scrollToTop();
