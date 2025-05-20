@@ -2,11 +2,14 @@ import styled from "styled-components";
 import PropTypes from "prop-types";
 import StoreItem from "./StoreItem";
 
-const StoreList = ({ stores }) => {
+const StoreList = ({ stores, isHomePage = false }) => {
+	// For homepage, show only top 4 stores
+	const displayStores = isHomePage ? stores?.slice(0, 4) : stores;
+
 	return (
 		<StoreListWrapper>
 			<div className="store-list d-grid">
-				{stores?.map((item) => (
+				{displayStores?.map((item) => (
 					<StoreItem
 						key={item.id}
 						storeItem={item}
@@ -21,6 +24,7 @@ export default StoreList;
 
 StoreList.propTypes = {
 	stores: PropTypes.array,
+	isHomePage: PropTypes.bool,
 };
 
 const StoreListWrapper = styled.div`
