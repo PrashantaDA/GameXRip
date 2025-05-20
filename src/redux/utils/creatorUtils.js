@@ -5,6 +5,6 @@ import { apiURL } from "../../constants";
 const API_KEY = import.meta.env.VITE_API_KEY;
 
 export const fetchAsyncCreators = createAsyncThunk("developers/fetch", async (page = 1) => {
-	const { data } = await axios.get(`${apiURL.creatorsURL}?${API_KEY}&page=${page}`);
+	const { data } = await axios.get(`${apiURL.creatorsURL}?${API_KEY}&page=${page}&page_size=18`);
 	return data;
 });

@@ -44,12 +44,26 @@ const CreatorItem = ({ creatorItem }) => {
 							{positions?.length > 0 ? positions.join(", ") : ""}
 						</span>
 					</li>
-					<li className="list-group-item">
+					<li className="list-group-item games-list">
 						<div className="item-left">
 							<FaList className="item-icon" />
 							<span>Games:</span>
 						</div>
-						<span className="item-right">{games?.length > 0 ? games.join(" | ") : "N/A"}</span>
+						<div className="games-grid">
+							{games?.length > 0 ? (
+								games.map((game, index) => (
+									<span
+										key={index}
+										className="game-item"
+										title={game}
+									>
+										{game}
+									</span>
+								))
+							) : (
+								<span className="no-games">N/A</span>
+							)}
+						</div>
 					</li>
 				</ul>
 			</div>
@@ -199,12 +213,56 @@ const CreatorItemWrapper = styled.div`
 		.list-group-item {
 			display: flex;
 			justify-content: space-between;
-			align-items: center;
+			align-items: flex-start;
 			padding: 12px 16px;
 			background: rgba(255, 255, 255, 0.05);
 			border: 1px solid rgba(255, 255, 255, 0.1);
 			border-radius: 12px;
 			transition: all 0.3s ease;
+
+			&.games-list {
+				flex-direction: column;
+				align-items: flex-start;
+				gap: 12px;
+
+				.games-grid {
+					display: grid;
+					grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+					gap: 8px;
+					width: 100%;
+					margin-top: 8px;
+
+					.game-item {
+						background: rgba(255, 255, 255, 0.05);
+						padding: 6px 12px;
+						border-radius: 6px;
+						font-size: 13px;
+						color: rgba(255, 255, 255, 0.8);
+						transition: all 0.3s ease;
+						text-align: center;
+						white-space: nowrap;
+						overflow: hidden;
+						text-overflow: ellipsis;
+						cursor: help;
+						max-width: 100%;
+						display: inline-block;
+
+						&:hover {
+							background: rgba(255, 255, 255, 0.1);
+							transform: translateY(-2px);
+							white-space: normal;
+							word-break: break-word;
+							position: relative;
+							z-index: 1;
+						}
+					}
+
+					.no-games {
+						color: rgba(255, 255, 255, 0.5);
+						font-style: italic;
+					}
+				}
+			}
 
 			&:hover {
 				background: rgba(255, 255, 255, 0.08);
