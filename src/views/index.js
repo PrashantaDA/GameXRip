@@ -6,3 +6,7 @@ export { default as ViewStoreAll } from "./store/StoreAllPage";
 export { default as ViewStoreDetails } from "./store/StoreDetailsPage";
 export { default as ViewCreatorAll } from "./creator/CreatorAllPage";
 export { default as AboutPage } from "./about/AboutPage";
+export { default as ContactPage } from "./contact/ContactPage";
+export { default as FAQPage } from "./support/FAQPage";
+export { default as PrivacyPolicyPage } from "./support/PrivacyPolicyPage";
+export { default as TermsPage } from "./support/TermsPage";

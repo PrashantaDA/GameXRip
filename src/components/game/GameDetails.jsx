@@ -187,6 +187,19 @@ const GameDetailsWrapper = styled.div`
 		margin-bottom: 24px;
 		border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 		padding-bottom: 16px;
+		overflow-x: auto;
+		-webkit-overflow-scrolling: touch;
+		scrollbar-width: none;
+		-ms-overflow-style: none;
+
+		&::-webkit-scrollbar {
+			display: none;
+		}
+
+		@media (max-width: 768px) {
+			gap: 8px;
+			padding-bottom: 12px;
+		}
 	}
 
 	.react-tabs__tab {
@@ -201,6 +214,8 @@ const GameDetailsWrapper = styled.div`
 		font-weight: 500;
 		transition: all 0.3s ease;
 		cursor: pointer;
+		white-space: nowrap;
+		flex-shrink: 0;
 
 		&:hover {
 			background: rgba(255, 255, 255, 0.05);
@@ -211,6 +226,15 @@ const GameDetailsWrapper = styled.div`
 		.tab-icon {
 			font-size: 18px;
 			color: var(--clr-purple-normal);
+		}
+
+		@media (max-width: 768px) {
+			padding: 8px 16px;
+			font-size: 14px;
+
+			.tab-icon {
+				font-size: 16px;
+			}
 		}
 	}
 

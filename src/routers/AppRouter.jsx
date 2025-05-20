@@ -1,8 +1,22 @@
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
-import { Home, Error, ViewGameAll, ViewGameDetails, ViewStoreAll, ViewStoreDetails, ViewCreatorAll, AboutPage } from "../views/index";
+import {
+	Home,
+	Error,
+	ViewGameAll,
+	ViewGameDetails,
+	ViewStoreAll,
+	ViewStoreDetails,
+	ViewCreatorAll,
+	AboutPage,
+	ContactPage,
+	FAQPage,
+	PrivacyPolicyPage,
+	TermsPage,
+} from "../views/index";
 import BaseLayout from "../layouts/BaseLayout";
 import { useEffect } from "react";
 import { scrollToTop } from "../utils/scrollUtils";
+import { ROUTES } from "../constants";
 
 // ScrollToTop component to handle scrolling on route changes
 const ScrollToTop = () => {
@@ -29,28 +43,44 @@ const AppRouter = () => {
 						element={<Home />}
 					/>
 					<Route
-						path="games"
+						path={ROUTES.GAMES}
 						element={<ViewGameAll />}
 					/>
 					<Route
-						path="games/:gameId"
+						path={ROUTES.GAME_DETAILS}
 						element={<ViewGameDetails />}
 					/>
 					<Route
-						path="stores"
+						path={ROUTES.STORES}
 						element={<ViewStoreAll />}
 					/>
 					<Route
-						path="stores/:storeId"
+						path={ROUTES.STORE_DETAILS}
 						element={<ViewStoreDetails />}
 					/>
 					<Route
-						path="creators"
+						path={ROUTES.CREATORS}
 						element={<ViewCreatorAll />}
 					/>
 					<Route
-						path="about"
+						path={ROUTES.ABOUT}
 						element={<AboutPage />}
+					/>
+					<Route
+						path={ROUTES.CONTACT}
+						element={<ContactPage />}
+					/>
+					<Route
+						path={ROUTES.FAQ}
+						element={<FAQPage />}
+					/>
+					<Route
+						path={ROUTES.PRIVACY}
+						element={<PrivacyPolicyPage />}
+					/>
+					<Route
+						path={ROUTES.TERMS}
+						element={<TermsPage />}
 					/>
 					<Route
 						path="*"

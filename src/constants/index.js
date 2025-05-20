@@ -14,6 +14,10 @@ export const ROUTES = {
 	STORE_DETAILS: "/stores/:storeId",
 	CREATORS: "/creators",
 	ABOUT: "/about",
+	CONTACT: "/contact",
+	FAQ: "/faq",
+	PRIVACY: "/privacy",
+	TERMS: "/terms",
 };
 
 export const BREAKPOINTS = {

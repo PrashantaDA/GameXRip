@@ -1,9 +1,29 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { FaGithub, FaTwitter, FaDiscord, FaSteam } from "react-icons/fa";
+import { ROUTES } from "../../constants";
 
 const Footer = () => {
 	const currentYear = new Date().getFullYear();
+
+	const supportLinks = [
+		{
+			name: "FAQ",
+			path: ROUTES.FAQ,
+		},
+		{
+			name: "Contact Us",
+			path: ROUTES.CONTACT,
+		},
+		{
+			name: "Privacy Policy",
+			path: ROUTES.PRIVACY,
+		},
+		{
+			name: "Terms of Service",
+			path: ROUTES.TERMS,
+		},
+	];
 
 	return (
 		<FooterWrapper>
@@ -64,18 +84,11 @@ const Footer = () => {
 				<div className="footer-section">
 					<h4>Support</h4>
 					<ul>
-						<li>
-							<Link to="/">FAQ</Link>
-						</li>
-						<li>
-							<Link to="/">Contact Us</Link>
-						</li>
-						<li>
-							<Link to="/">Privacy Policy</Link>
-						</li>
-						<li>
-							<Link to="/">Terms of Service</Link>
-						</li>
+						{supportLinks.map((link, index) => (
+							<li key={index}>
+								<Link to={link.path}>{link.name}</Link>
+							</li>
+						))}
 					</ul>
 				</div>
 

@@ -1,311 +1,205 @@
 /* eslint-disable no-unused-vars */
 import styled from "styled-components";
 import { motion } from "framer-motion";
-import { FaUsers, FaGamepad, FaTrophy, FaHeart } from "react-icons/fa";
+import { FaGamepad, FaUsers, FaGlobe, FaShieldAlt } from "react-icons/fa";
+import { Breadcrumb } from "../../components/common";
 
 const AboutPage = () => {
 	return (
-		<AboutWrapper>
-			<HeroSection>
-				<motion.h1
-					initial={{ opacity: 0, y: 20 }}
-					animate={{ opacity: 1, y: 0 }}
-					transition={{ duration: 0.6 }}
-				>
-					About <span>GameXRip</span>
-				</motion.h1>
-				<motion.p
-					initial={{ opacity: 0, y: 20 }}
-					animate={{ opacity: 1, y: 0 }}
-					transition={{ duration: 0.6, delay: 0.2 }}
-				>
-					Your Ultimate Gaming Community
-				</motion.p>
-			</HeroSection>
+		<AboutPageWrapper>
+			<div className="container">
+				<Breadcrumb dataNameById="About Us" />
+				<div className="about-content">
+					<div className="about-header">
+						<h1>About GameXRip</h1>
+						<p className="subtitle">Your Ultimate Gaming Platform</p>
+					</div>
 
-			<MissionSection>
-				<motion.div
-					initial={{ opacity: 0, y: 20 }}
-					animate={{ opacity: 1, y: 0 }}
-					transition={{ duration: 0.6, delay: 0.4 }}
-					className="mission-content"
-				>
-					<h2>Our Mission</h2>
-					<p>
-						At GameXRip, we're passionate about creating a vibrant gaming community where players can discover new games, connect with creators, and share their gaming experiences.
-						Our platform brings together gamers, developers, and content creators in one unified space.
-					</p>
-				</motion.div>
+					<div className="about-section">
+						<div className="section-content">
+							<h2>Our Mission</h2>
+							<p>
+								At GameXRip, we're dedicated to providing gamers with a seamless and enjoyable gaming experience. Our platform offers a vast collection of games, detailed
+								information, and a vibrant community for gamers to connect and share their passion.
+							</p>
+						</div>
+					</div>
 
-				<StatsGrid>
-					<StatCard
-						initial={{ opacity: 0, scale: 0.9 }}
-						animate={{ opacity: 1, scale: 1 }}
-						transition={{ duration: 0.5, delay: 0.6 }}
-					>
-						<FaUsers className="icon" />
-						<h3>10K+</h3>
-						<p>Active Users</p>
-					</StatCard>
-					<StatCard
-						initial={{ opacity: 0, scale: 0.9 }}
-						animate={{ opacity: 1, scale: 1 }}
-						transition={{ duration: 0.5, delay: 0.7 }}
-					>
-						<FaGamepad className="icon" />
-						<h3>5K+</h3>
-						<p>Games Listed</p>
-					</StatCard>
-					<StatCard
-						initial={{ opacity: 0, scale: 0.9 }}
-						animate={{ opacity: 1, scale: 1 }}
-						transition={{ duration: 0.5, delay: 0.8 }}
-					>
-						<FaTrophy className="icon" />
-						<h3>100+</h3>
-						<p>Top Creators</p>
-					</StatCard>
-				</StatsGrid>
-			</MissionSection>
+					<div className="features-grid">
+						<div className="feature-card">
+							<div className="feature-icon">
+								<FaGamepad />
+							</div>
+							<h3>Extensive Game Library</h3>
+							<p>Access a comprehensive collection of games across various platforms and genres.</p>
+						</div>
 
-			<ValuesSection>
-				<h2>Our Values</h2>
-				<ValuesGrid>
-					<ValueCard
-						initial={{ opacity: 0, y: 20 }}
-						animate={{ opacity: 1, y: 0 }}
-						transition={{ duration: 0.5, delay: 0.9 }}
-					>
-						<FaHeart className="icon" />
-						<h3>Community First</h3>
-						<p>Building a supportive and inclusive gaming community where everyone feels welcome.</p>
-					</ValueCard>
-					<ValueCard
-						initial={{ opacity: 0, y: 20 }}
-						animate={{ opacity: 1, y: 0 }}
-						transition={{ duration: 0.5, delay: 1 }}
-					>
-						<FaGamepad className="icon" />
-						<h3>Quality Content</h3>
-						<p>Curating and promoting high-quality games and content that gamers love.</p>
-					</ValueCard>
-					<ValueCard
-						initial={{ opacity: 0, y: 20 }}
-						animate={{ opacity: 1, y: 0 }}
-						transition={{ duration: 0.5, delay: 1.1 }}
-					>
-						<FaUsers className="icon" />
-						<h3>Creator Support</h3>
-						<p>Empowering game developers and content creators to reach their audience.</p>
-					</ValueCard>
-				</ValuesGrid>
-			</ValuesSection>
+						<div className="feature-card">
+							<div className="feature-icon">
+								<FaUsers />
+							</div>
+							<h3>Community Driven</h3>
+							<p>Join a thriving community of gamers, share experiences, and discover new games.</p>
+						</div>
 
-			<JoinSection>
-				<motion.div
-					initial={{ opacity: 0, y: 20 }}
-					animate={{ opacity: 1, y: 0 }}
-					transition={{ duration: 0.6, delay: 1.2 }}
-					className="join-content"
-				>
-					<h2>Join Our Community</h2>
-					<p>Be part of the fastest-growing gaming community. Connect, share, and discover amazing games.</p>
-					<motion.button
-						whileHover={{ scale: 1.05 }}
-						whileTap={{ scale: 0.95 }}
-					>
-						Get Started
-					</motion.button>
-				</motion.div>
-			</JoinSection>
-		</AboutWrapper>
+						<div className="feature-card">
+							<div className="feature-icon">
+								<FaGlobe />
+							</div>
+							<h3>Global Reach</h3>
+							<p>Connect with gamers worldwide and explore games from different cultures.</p>
+						</div>
+
+						<div className="feature-card">
+							<div className="feature-icon">
+								<FaShieldAlt />
+							</div>
+							<h3>Secure Platform</h3>
+							<p>Enjoy a safe and secure gaming environment with our robust security measures.</p>
+						</div>
+					</div>
+
+					<div className="about-section">
+						<div className="section-content">
+							<h2>Our Story</h2>
+							<p>
+								GameXRip was born from a passion for gaming and a vision to create a platform that brings gamers together. We understand the importance of having a reliable source
+								for game information and a community to share experiences with.
+							</p>
+							<p>
+								Our team of dedicated gaming enthusiasts works tirelessly to ensure that GameXRip remains the go-to platform for gamers worldwide. We're constantly evolving and
+								adding new features to enhance your gaming experience.
+							</p>
+						</div>
+					</div>
+
+					<div className="about-section">
+						<div className="section-content">
+							<h2>Join Our Community</h2>
+							<p>
+								Whether you're a casual gamer or a hardcore enthusiast, GameXRip welcomes you to join our growing community. Share your gaming experiences, discover new games, and
+								connect with fellow gamers from around the world.
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</AboutPageWrapper>
 	);
 };
 
 export default AboutPage;
 
-const AboutWrapper = styled.div`
+const AboutPageWrapper = styled.div`
+	padding: 65px 0;
 	min-height: 100vh;
-	background: linear-gradient(to bottom, #0a0a0a, #1a1a1a);
-	color: #fff;
-	padding: 2rem;
-`;
+	background: linear-gradient(135deg, var(--clr-violet-darker) 0%, var(--clr-dark) 100%);
 
-const HeroSection = styled.section`
-	text-align: center;
-	padding: 4rem 0;
-
-	h1 {
-		font-size: 3.5rem;
-		margin-bottom: 1rem;
-		color: #fff;
-
-		span {
-			background: linear-gradient(45deg, #333333, #666666);
-			-webkit-background-clip: text;
-			-webkit-text-fill-color: transparent;
-		}
+	.about-content {
+		max-width: 1200px;
+		margin: 0 auto;
+		padding: 32px;
+		background: rgba(255, 255, 255, 0.03);
+		border-radius: 24px;
+		backdrop-filter: blur(10px);
+		border: 1px solid rgba(255, 255, 255, 0.05);
+		box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
 	}
 
-	p {
-		font-size: 1.2rem;
-		color: #a0a0a0;
-	}
-`;
-
-const MissionSection = styled.section`
-	max-width: 1200px;
-	margin: 0 auto;
-	padding: 4rem 0;
-
-	.mission-content {
+	.about-header {
 		text-align: center;
-		margin-bottom: 4rem;
+		margin-bottom: 48px;
 
-		h2 {
-			font-size: 2.5rem;
-			margin-bottom: 1.5rem;
-			color: #ffffff;
+		h1 {
+			font-size: 36px;
+			color: white;
+			margin-bottom: 16px;
+			text-transform: uppercase;
+			letter-spacing: 1px;
 		}
 
-		p {
-			font-size: 1.1rem;
-			line-height: 1.8;
-			color: #a0a0a0;
-			max-width: 800px;
-			margin: 0 auto;
+		.subtitle {
+			font-size: 18px;
+			color: var(--clr-purple-normal);
+			font-weight: 500;
 		}
 	}
-`;
 
-const StatsGrid = styled.div`
-	display: grid;
-	grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-	gap: 2rem;
-	margin-top: 3rem;
-`;
+	.about-section {
+		margin-bottom: 48px;
 
-const StatCard = styled(motion.div)`
-	background: rgba(255, 255, 255, 0.05);
-	border: 1px solid rgba(255, 255, 255, 0.1);
-	border-radius: 10px;
-	padding: 2rem;
-	text-align: center;
-	transition: transform 0.3s ease;
+		.section-content {
+			background: rgba(255, 255, 255, 0.02);
+			padding: 32px;
+			border-radius: 16px;
+			border: 1px solid rgba(255, 255, 255, 0.05);
 
-	&:hover {
-		transform: translateY(-5px);
-		background: rgba(255, 255, 255, 0.08);
-	}
-
-	.icon {
-		font-size: 2.5rem;
-		color: #ffffff;
-		margin-bottom: 1rem;
-	}
-
-	h3 {
-		font-size: 2rem;
-		color: #fff;
-		margin-bottom: 0.5rem;
-	}
-
-	p {
-		color: #a0a0a0;
-	}
-`;
-
-const ValuesSection = styled.section`
-	max-width: 1200px;
-	margin: 0 auto;
-	padding: 4rem 0;
-	text-align: center;
-
-	h2 {
-		font-size: 2.5rem;
-		margin-bottom: 3rem;
-		color: #ffffff;
-	}
-`;
-
-const ValuesGrid = styled.div`
-	display: grid;
-	grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-	gap: 2rem;
-`;
-
-const ValueCard = styled(motion.div)`
-	background: rgba(255, 255, 255, 0.05);
-	border: 1px solid rgba(255, 255, 255, 0.1);
-	border-radius: 10px;
-	padding: 2rem;
-	text-align: center;
-	transition: transform 0.3s ease;
-
-	&:hover {
-		transform: translateY(-5px);
-		background: rgba(255, 255, 255, 0.08);
-	}
-
-	.icon {
-		font-size: 2.5rem;
-		color: #ffffff;
-		margin-bottom: 1rem;
-	}
-
-	h3 {
-		font-size: 1.5rem;
-		color: #fff;
-		margin-bottom: 1rem;
-	}
-
-	p {
-		color: #a0a0a0;
-		line-height: 1.6;
-	}
-`;
-
-const JoinSection = styled.section`
-	max-width: 1200px;
-	margin: 0 auto;
-	padding: 4rem 0;
-	text-align: center;
-
-	.join-content {
-		background: rgba(255, 255, 255, 0.05);
-		border: 1px solid rgba(255, 255, 255, 0.1);
-		border-radius: 10px;
-		padding: 3rem;
-
-		h2 {
-			font-size: 2.5rem;
-			margin-bottom: 1.5rem;
-			color: #ffffff;
-		}
-
-		p {
-			font-size: 1.1rem;
-			color: #a0a0a0;
-			margin-bottom: 2rem;
-			max-width: 600px;
-			margin-left: auto;
-			margin-right: auto;
-		}
-
-		button {
-			background: #333333;
-			color: #fff;
-			border: none;
-			padding: 1rem 2rem;
-			font-size: 1.1rem;
-			border-radius: 5px;
-			cursor: pointer;
-			transition: all 0.3s ease;
-
-			&:hover {
-				background: #444444;
-				transform: translateY(-2px);
+			h2 {
+				color: white;
+				font-size: 24px;
+				margin-bottom: 16px;
+				font-weight: 600;
 			}
+
+			p {
+				color: rgba(255, 255, 255, 0.8);
+				line-height: 1.6;
+				margin-bottom: 16px;
+
+				&:last-child {
+					margin-bottom: 0;
+				}
+			}
+		}
+	}
+
+	.features-grid {
+		display: grid;
+		gap: 24px;
+		margin-bottom: 48px;
+
+		@media (min-width: 768px) {
+			grid-template-columns: repeat(2, 1fr);
+		}
+
+		@media (min-width: 1024px) {
+			grid-template-columns: repeat(4, 1fr);
+		}
+	}
+
+	.feature-card {
+		background: rgba(255, 255, 255, 0.02);
+		padding: 24px;
+		border-radius: 16px;
+		border: 1px solid rgba(255, 255, 255, 0.05);
+		text-align: center;
+
+		.feature-icon {
+			width: 48px;
+			height: 48px;
+			background: var(--clr-purple-normal);
+			border-radius: 12px;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			margin: 0 auto 16px;
+
+			svg {
+				font-size: 24px;
+				color: white;
+			}
+		}
+
+		h3 {
+			color: white;
+			font-size: 20px;
+			margin-bottom: 8px;
+			font-weight: 600;
+		}
+
+		p {
+			color: rgba(255, 255, 255, 0.8);
+			line-height: 1.5;
 		}
 	}
 `;
