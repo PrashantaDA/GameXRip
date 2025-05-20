@@ -42,7 +42,7 @@ const ImageSlider = () => {
 	};
 
 	return (
-		<ImageSliderWrapper className="section">
+		<ImageSliderWrapper>
 			<div className="slider-background">
 				<Slider
 					{...settings}
@@ -74,7 +74,7 @@ const ImageSliderWrapper = styled.div`
 	overflow: hidden;
 
 	.slider-background {
-		background: linear-gradient(rgba(1, 1, 2, 0.99), rgba(7, 5, 14, 0.97));
+		background: linear-gradient(rgba(3, 3, 10, 0.99), rgba(7, 3, 20, 0.97));
 		padding: 90px 9px;
 	}
 
@@ -86,7 +86,6 @@ const ImageSliderWrapper = styled.div`
 
 			img {
 				height: 360px;
-
 				object-fit: fill;
 				aspect-ratio: 16/9;
 			}

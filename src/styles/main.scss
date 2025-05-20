@@ -32,7 +32,11 @@
 	scroll-behavior: smooth;
 }
 
-html {
+html,
+body {
+	overflow-x: hidden;
+	width: 100%;
+	position: relative;
 	font-size: 10px;
 }
 

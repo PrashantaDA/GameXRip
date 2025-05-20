@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import styled, { keyframes } from "styled-components";
 import { motion, AnimatePresence } from "framer-motion";
 import { FaArrowUp } from "react-icons/fa";
+import { scrollToTop } from "../../utils/scrollUtils";
 
 const BackToTop = () => {
 	const [isVisible, setIsVisible] = useState(false);
@@ -13,15 +14,6 @@ const BackToTop = () => {
 		} else {
 			setIsVisible(false);
 		}
-	};
-
-	// Set the top coordinate to 0
-	// Make scrolling smooth
-	const scrollToTop = () => {
-		window.scrollTo({
-			top: 0,
-			behavior: "smooth",
-		});
 	};
 
 	useEffect(() => {
@@ -63,48 +55,23 @@ const BackToTopWrapper = styled.div`
 	right: 30px;
 	width: 50px;
 	height: 50px;
-	background: rgba(108, 92, 231, 0.1);
-	border: 1px solid rgba(108, 92, 231, 0.3);
 	border-radius: 50%;
+	background: var(--clr-purple-normal);
+	color: white;
 	display: flex;
 	align-items: center;
 	justify-content: center;
 	cursor: pointer;
 	z-index: 1000;
-	backdrop-filter: blur(4px);
-	transition: all 0.3s ease;
-	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+	box-shadow: 0 4px 12px rgba(108, 92, 231, 0.3);
+	animation: ${floatAnimation} 2s ease-in-out infinite;
 
-	&::before {
-		content: "";
-		position: absolute;
-		top: 0;
-		left: 0;
-		width: 100%;
-		height: 100%;
-		background: linear-gradient(45deg, rgba(108, 92, 231, 0.1), rgba(255, 255, 255, 0.1));
-		border-radius: 50%;
-		opacity: 0;
-		transition: opacity 0.3s ease;
+	.arrow-icon {
+		font-size: 20px;
 	}
 
 	&:hover {
-		transform: translateY(-5px);
-		background: rgba(108, 92, 231, 0.2);
-		box-shadow: 0 6px 16px rgba(108, 92, 231, 0.2);
-
-		&::before {
-			opacity: 1;
-		}
-
-		.arrow-icon {
-			animation: ${floatAnimation} 1s ease-in-out infinite;
-		}
-	}
-
-	.arrow-icon {
-		color: #fff;
-		font-size: 20px;
-		transition: transform 0.3s ease;
+		background: var(--clr-purple-dark);
+		transform: translateY(-2px);
 	}
 `;

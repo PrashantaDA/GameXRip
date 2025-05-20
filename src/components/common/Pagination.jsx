@@ -3,16 +3,10 @@ import PropTypes from "prop-types";
 import { AiOutlineArrowLeft, AiOutlineArrowRight } from "react-icons/ai";
 import { useSearchParams } from "react-router-dom";
 import { useEffect } from "react";
+import { scrollToTop } from "../../utils/scrollUtils";
 
 const Pagination = ({ pageHandler, prevPage, currentPage, nextPage }) => {
 	const [searchParams, setSearchParams] = useSearchParams();
-
-	const scrollToTop = () => {
-		window.scrollTo({
-			top: 0,
-			behavior: "smooth",
-		});
-	};
 
 	const updatePageInURL = (page) => {
 		setSearchParams({ page: page.toString() });
@@ -51,92 +45,67 @@ const Pagination = ({ pageHandler, prevPage, currentPage, nextPage }) => {
 	};
 
 	return (
-		<PaginationWrapper className="d-flex align-items-center justify-content-center">
+		<PaginationWrapper>
 			<button
-				type="button"
-				className={`prev-btn fw-6 text-uppercase text-white d-flex align-items-center ${prevPage === null ? "disabled" : ""}`}
-				disabled={!prevPage}
+				className="pagination-button"
 				onClick={pagePrevHandler}
+				disabled={prevPage === null}
 			>
-				<AiOutlineArrowLeft className="me-2" /> Prev
+				<AiOutlineArrowLeft />
 			</button>
+			<span className="pagination-info">Page {currentPage}</span>
 			<button
-				type="button"
-				className={`next-btn fw-6 text-uppercase text-white d-flex align-items-center ${nextPage === null ? "disabled" : ""}`}
-				disabled={!nextPage}
+				className="pagination-button"
 				onClick={pageNextHandler}
+				disabled={nextPage === null}
 			>
-				Next <AiOutlineArrowRight className="ms-2" />
+				<AiOutlineArrowRight />
 			</button>
 		</PaginationWrapper>
 	);
 };
 
-export default Pagination;
-
 Pagination.propTypes = {
 	pageHandler: PropTypes.func.isRequired,
-	prevPage: PropTypes.number,
+	prevPage: PropTypes.string,
 	currentPage: PropTypes.number.isRequired,
-	nextPage: PropTypes.number,
+	nextPage: PropTypes.string,
 };
 
-const PaginationWrapper = styled.div`
-	margin-top: 48px;
-	.prev-btn,
-	.next-btn {
-		margin: 0 16px;
-		font-size: 16px;
-		letter-spacing: 1px;
-		cursor: pointer;
-		background: rgba(255, 255, 255, 0.05);
-		color: #fff;
-		border: 1px solid rgba(255, 255, 255, 0.1);
-		padding: 12px 24px;
-		border-radius: 8px;
-		transition: all 0.3s ease;
-		backdrop-filter: blur(4px);
-		position: relative;
-		overflow: hidden;
+export default Pagination;
 
-		&::before {
-			content: "";
-			position: absolute;
-			top: 0;
-			left: 0;
-			width: 100%;
-			height: 100%;
-			background: linear-gradient(45deg, rgba(108, 92, 231, 0.1), rgba(255, 255, 255, 0.1));
-			opacity: 0;
-			transition: opacity 0.3s ease;
-		}
+const PaginationWrapper = styled.div`
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 16px;
+	margin-top: 32px;
+
+	.pagination-button {
+		background: rgba(255, 255, 255, 0.1);
+		border: none;
+		color: white;
+		width: 40px;
+		height: 40px;
+		border-radius: 50%;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		cursor: pointer;
+		transition: all 0.3s ease;
 
 		&:hover:not(:disabled) {
-			background: rgba(255, 255, 255, 0.1);
-			transform: translateY(-2px);
-			box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-
-			&::before {
-				opacity: 1;
-			}
+			background: var(--clr-purple-normal);
 		}
 
 		&:disabled {
-			cursor: default;
 			opacity: 0.5;
-			background: rgba(255, 255, 255, 0.02);
-		}
-
-		svg {
-			transition: transform 0.3s ease;
-		}
-
-		&:hover:not(:disabled) svg {
-			transform: scale(1.1);
+			cursor: not-allowed;
 		}
 	}
 
-	.disabled {
-		opacity: 0.5;
+	.pagination-info {
+		color: white;
+		font-size: 14px;
 	}
 `;

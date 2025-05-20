@@ -7,6 +7,57 @@ import { MdClose } from "react-icons/md";
 import { useDispatch, useSelector } from "react-redux";
 import { selectSidebarStatus, setSidebarOff, setSidebarOn } from "../../redux/store/sidebarSlice";
 
+const NAV_ITEMS = [
+	{ path: "/", label: "Home" },
+	{ path: "/games", label: "Games" },
+	{ path: "/creators", label: "Creators" },
+	{ path: "/stores", label: "Stores" },
+];
+
+const SOCIAL_LINKS = [
+	{ icon: BsSteam, path: "/", className: "steam" },
+	{ icon: BsTwitch, path: "/", className: "twitch" },
+	{ icon: SiKick, path: "/", className: "kick" },
+	{ icon: BsYoutube, path: "/", className: "youtube" },
+];
+
+const NavigationItems = () => (
+	<ul className="navbar-nav">
+		{NAV_ITEMS.map(({ path, label }) => (
+			<li
+				key={path}
+				className="nav-item"
+			>
+				<Link
+					to={path}
+					className="nav-link"
+				>
+					{label}
+				</Link>
+			</li>
+		))}
+	</ul>
+);
+
+const SocialLinks = () => (
+	<ul className="connect-list d-flex justify-content-center align-items-center mt-5 flex-wrap">
+		<li className="text-uppercase fw-7 w-100 connect-text mb-2">Connect</li>
+		{SOCIAL_LINKS.map(({ icon: Icon, path, className }) => (
+			<li
+				key={className}
+				className="connect-item"
+			>
+				<Link
+					to={path}
+					className={`connect-link ${className}`}
+				>
+					{Icon && <Icon size={className === "youtube" ? 23 : 20} />}
+				</Link>
+			</li>
+		))}
+	</ul>
+);
+
 const Navbar = () => {
 	const dispatch = useDispatch();
 	const sidebarStatus = useSelector(selectSidebarStatus);
@@ -40,76 +91,8 @@ const Navbar = () => {
 						>
 							<MdClose size={27} />
 						</button>
-						<ul className="navbar-nav">
-							<li className="nav-item">
-								<Link
-									to={"/"}
-									className="nav-link"
-								>
-									Home
-								</Link>
-							</li>
-							<li className="nav-item">
-								<Link
-									to={"/creators"}
-									className="nav-link"
-								>
-									Creators
-								</Link>
-							</li>
-							<li className="nav-item">
-								<Link
-									to={"/stores"}
-									className="nav-link"
-								>
-									Stores
-								</Link>
-							</li>
-							<li className="nav-item">
-								<Link
-									to={"/games"}
-									className="nav-link"
-								>
-									Games
-								</Link>
-							</li>
-						</ul>
-
-						<ul className="connect-list d-flex justify-content-center align-items-center mt-5 flex-wrap">
-							<li className="text-uppercase fw-7 w-100 connect-text mb-2">Connect </li>
-							<li className="connect-item">
-								<Link
-									to={"/"}
-									className="connect-link steam"
-								>
-									<BsSteam size={20} />
-								</Link>
-							</li>
-							<li className="connect-item">
-								<Link
-									to={"/"}
-									className="connect-link twitch"
-								>
-									<BsTwitch size={20} />
-								</Link>
-							</li>
-							<li className="connect-item">
-								<Link
-									to={"/"}
-									className="connect-link kick"
-								>
-									<SiKick size={20} />
-								</Link>
-							</li>
-							<li className="connect-item">
-								<Link
-									to={"/"}
-									className="connect-link youtube"
-								>
-									<BsYoutube size={23} />
-								</Link>
-							</li>
-						</ul>
+						<NavigationItems />
+						<SocialLinks />
 					</div>
 				</div>
 			</div>

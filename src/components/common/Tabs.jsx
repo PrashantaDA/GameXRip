@@ -6,43 +6,27 @@ import GenreItem from "../genre/GenreItem";
 import axios from "../../api/axios";
 import { apiURL } from "../../constants";
 import GameSkeleton from "./GameSkeleton";
+import usePagination from "../../hooks/usePagination";
+import useWindowResize from "../../hooks/useWindowResize";
+import { scrollToElement } from "../../utils/scrollUtils";
+import Grid from "./Grid";
 
 const API_KEY = import.meta.env.VITE_API_KEY;
 
 const Tabs = ({ data, sliceValue = 9 }) => {
 	const [activeTab, setActiveTab] = useState(data[0]);
 	const [tabButtonStatus, setTabButtonStatus] = useState(false);
-	const [isMobile, setIsMobile] = useState(window.innerWidth <= 992);
-	const [currentPages, setCurrentPages] = useState({});
 	const [genreGames, setGenreGames] = useState({});
 	const [loading, setLoading] = useState(false);
 
-	useEffect(() => {
-		const handleResize = () => {
-			setIsMobile(window.innerWidth <= 992);
-			if (window.innerWidth > 992) {
-				setTabButtonStatus(false);
-			}
-		};
-
-		window.addEventListener("resize", handleResize);
-		return () => window.removeEventListener("resize", handleResize);
-	}, []);
-
-	// Initialize current page for each genre if not set
-	useEffect(() => {
-		const initialPages = {};
-		data.forEach((genre) => {
-			if (!currentPages[genre.id]) {
-				initialPages[genre.id] = 1;
-			}
-		});
-		setCurrentPages((prev) => ({ ...prev, ...initialPages }));
-	}, [data]);
+	const isMobile = useWindowResize();
+	const { page, handlePageChange: paginationHandler } = usePagination(1);
+	const currentPageItems = genreGames[activeTab?.id]?.slice((page - 1) * sliceValue, page * sliceValue) || [];
+	const totalPages = Math.ceil((genreGames[activeTab?.id]?.length || 0) / sliceValue);
 
 	// Fetch games for a genre
 	const fetchGenreGames = async (genreId) => {
-		if (genreGames[genreId]) return; // Don't fetch if we already have the games
+		if (genreGames[genreId]) return;
 
 		setLoading(true);
 		try {
@@ -57,7 +41,6 @@ const Tabs = ({ data, sliceValue = 9 }) => {
 		setLoading(false);
 	};
 
-	// Fetch games when active tab changes
 	useEffect(() => {
 		if (activeTab?.id) {
 			fetchGenreGames(activeTab.id);
@@ -65,41 +48,19 @@ const Tabs = ({ data, sliceValue = 9 }) => {
 	}, [activeTab]);
 
 	const tabClickHandler = (id) => {
-		data.map((item) => {
-			if (item.id === id) {
-				setActiveTab(item);
-				if (isMobile) {
-					setTabButtonStatus(false);
-				}
+		const newTab = data.find((item) => item.id === id);
+		if (newTab) {
+			setActiveTab(newTab);
+			if (isMobile) {
+				setTabButtonStatus(false);
 			}
-		});
-	};
-
-	const tabButtonsHandler = () => setTabButtonStatus((prevStatus) => !prevStatus);
-
-	const handlePageChange = (genreId, newPage) => {
-		setCurrentPages((prev) => ({
-			...prev,
-			[genreId]: newPage,
-		}));
-
-		// Scroll to the top of the tabs component
-		const tabsElement = document.querySelector(".tabs-content");
-		if (tabsElement) {
-			tabsElement.scrollIntoView({ behavior: "smooth", block: "start" });
 		}
 	};
 
-	const getCurrentPageGames = (games) => {
-		if (!games) return [];
-		const currentPage = currentPages[activeTab.id] || 1;
-		const startIndex = (currentPage - 1) * sliceValue;
-		const endIndex = startIndex + sliceValue;
-		return games.slice(startIndex, endIndex);
+	const handlePageChange = (newPage) => {
+		paginationHandler(newPage);
+		scrollToElement(".tabs-content");
 	};
-
-	const totalPages = Math.ceil((genreGames[activeTab?.id]?.length || 0) / sliceValue);
-	const currentPage = currentPages[activeTab?.id] || 1;
 
 	return (
 		<TabsWrapper>
@@ -111,7 +72,7 @@ const Tabs = ({ data, sliceValue = 9 }) => {
 							<button
 								type="button"
 								className="menu-toggle"
-								onClick={tabButtonsHandler}
+								onClick={() => setTabButtonStatus(!tabButtonStatus)}
 								aria-label="Toggle genre menu"
 							>
 								<AiOutlineMenu size={22} />
@@ -148,30 +109,30 @@ const Tabs = ({ data, sliceValue = 9 }) => {
 							<GameSkeleton count={sliceValue} />
 						) : (
 							<>
-								<div className="card-list">
-									{getCurrentPageGames(genreGames[activeTab?.id])?.map((item) => (
+								<Grid>
+									{currentPageItems?.map((item) => (
 										<GenreItem
 											key={item?.id}
 											gameItem={item}
 										/>
 									))}
-								</div>
+								</Grid>
 								{totalPages > 1 && (
 									<div className="pagination-controls">
 										<button
 											className="pagination-btn"
-											onClick={() => handlePageChange(activeTab.id, currentPage - 1)}
-											disabled={currentPage === 1}
+											onClick={() => handlePageChange(page - 1)}
+											disabled={page === 1}
 										>
 											<AiOutlineArrowLeft />
 										</button>
 										<span className="page-info">
-											{currentPage} / {totalPages}
+											Page {page} of {totalPages}
 										</span>
 										<button
 											className="pagination-btn"
-											onClick={() => handlePageChange(activeTab.id, currentPage + 1)}
-											disabled={currentPage === totalPages}
+											onClick={() => handlePageChange(page + 1)}
+											disabled={page === totalPages}
 										>
 											<AiOutlineArrowRight />
 										</button>
