@@ -165,6 +165,71 @@ const GameDetailsWrapper = styled.div`
 	border-radius: 24px;
 	border: 1px solid rgba(255, 255, 255, 0.05);
 	box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+
+	@keyframes fadeIn {
+		from {
+			opacity: 0;
+			transform: translateY(10px);
+		}
+		to {
+			opacity: 1;
+			transform: translateY(0);
+		}
+	}
+
+	.react-tabs {
+		margin-top: 32px;
+	}
+
+	.react-tabs__tab-list {
+		display: flex;
+		gap: 16px;
+		margin-bottom: 24px;
+		border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+		padding-bottom: 16px;
+	}
+
+	.react-tabs__tab {
+		display: flex;
+		align-items: center;
+		gap: 8px;
+		padding: 12px 24px;
+		background: rgba(255, 255, 255, 0.03);
+		border: 1px solid rgba(255, 255, 255, 0.05);
+		border-radius: 12px;
+		color: rgba(255, 255, 255, 0.7);
+		font-weight: 500;
+		transition: all 0.3s ease;
+		cursor: pointer;
+
+		&:hover {
+			background: rgba(255, 255, 255, 0.05);
+			color: white;
+			transform: translateY(-2px);
+		}
+
+		.tab-icon {
+			font-size: 18px;
+			color: var(--clr-purple-normal);
+		}
+	}
+
+	.react-tabs__tab--selected {
+		background: var(--clr-purple-normal);
+		color: white;
+		border-color: var(--clr-purple-normal);
+		box-shadow: 0 4px 12px rgba(120, 81, 169, 0.3);
+
+		.tab-icon {
+			color: white;
+		}
+	}
+
+	.react-tabs__tab-panel {
+		&--selected {
+			animation: fadeIn 0.3s ease;
+		}
+	}
 `;
 
 const TitleSection = styled.div`
@@ -312,6 +377,8 @@ const TabContent = styled.div`
 	background: rgba(255, 255, 255, 0.02);
 	border-radius: 16px;
 	margin-top: 24px;
+	border: 1px solid rgba(255, 255, 255, 0.05);
+	box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 `;
 
 const TabTitle = styled.h3`
@@ -319,6 +386,19 @@ const TabTitle = styled.h3`
 	margin-bottom: 20px;
 	font-size: 20px;
 	font-weight: 600;
+	position: relative;
+	padding-bottom: 12px;
+
+	&::after {
+		content: "";
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		width: 60px;
+		height: 3px;
+		background: linear-gradient(90deg, var(--clr-purple-normal), transparent);
+		border-radius: 2px;
+	}
 `;
 
 const PlatformsList = styled.div`
