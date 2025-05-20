@@ -65,16 +65,16 @@ const Footer = () => {
 					<h4>Support</h4>
 					<ul>
 						<li>
-							<Link to="/faq">FAQ</Link>
+							<Link to="/">FAQ</Link>
 						</li>
 						<li>
-							<Link to="/contact">Contact Us</Link>
+							<Link to="/">Contact Us</Link>
 						</li>
 						<li>
-							<Link to="/privacy">Privacy Policy</Link>
+							<Link to="/">Privacy Policy</Link>
 						</li>
 						<li>
-							<Link to="/terms">Terms of Service</Link>
+							<Link to="/">Terms of Service</Link>
 						</li>
 					</ul>
 				</div>
