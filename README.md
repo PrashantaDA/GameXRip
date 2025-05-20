@@ -1,6 +1,6 @@
 # GameXRip
 
-A modern React based website to find information related to games.
+The ultimate destination for game information, reviews, and details built using React.
 
 ## 🚀 Features
 

@@ -11,7 +11,120 @@
 			name="viewport"
 			content="width=device-width, initial-scale=1.0"
 		/>
-		<title>GameXRip</title>
+		<meta
+			name="description"
+			content="GameXRip - Your ultimate destination for game information, reviews, and details. Discover games across multiple platforms, read descriptions, and find where to buy your favorite games."
+		/>
+		<meta
+			name="keywords"
+			content="games, gaming, game information, game details, game platforms, game stores, game reviews, gaming news"
+		/>
+		<meta
+			name="author"
+			content="GameXRip"
+		/>
+		<meta
+			name="robots"
+			content="index, follow"
+		/>
+
+		<!-- Open Graph / Facebook -->
+		<meta
+			property="og:type"
+			content="website"
+		/>
+		<meta
+			property="og:url"
+			content="https://gamexrip.netlify.app/"
+		/>
+		<meta
+			property="og:title"
+			content="GameXRip - Your Gaming Information Hub"
+		/>
+		<meta
+			property="og:description"
+			content="Discover detailed information about your favorite games, including platforms, stores, and descriptions."
+		/>
+		<meta
+			property="og:image"
+			content="/Gamexrip-logo.png"
+		/>
+
+		<!-- Twitter -->
+		<meta
+			property="twitter:card"
+			content="summary_large_image"
+		/>
+		<meta
+			property="twitter:url"
+			content="https://gamexrip.netlify.app/"
+		/>
+		<meta
+			property="twitter:title"
+			content="GameXRip - Your Gaming Information Hub"
+		/>
+		<meta
+			property="twitter:description"
+			content="Discover detailed information about your favorite games, including platforms, stores, and descriptions."
+		/>
+		<meta
+			property="twitter:image"
+			content="/Gamexrip-logo.png"
+		/>
+
+		<!-- Canonical URL -->
+		<link
+			rel="canonical"
+			href="https://gamexrip.netlify.app/"
+		/>
+
+		<!-- Preload critical assets -->
+		<link
+			rel="preload"
+			href="/Gamexrip-logo.png"
+			as="image"
+		/>
+		<link
+			rel="preconnect"
+			href="https://fonts.googleapis.com"
+		/>
+		<link
+			rel="preconnect"
+			href="https://fonts.gstatic.com"
+			crossorigin
+		/>
+
+		<!-- Structured Data -->
+		<script type="application/ld+json">
+			{
+				"@context": "https://schema.org",
+				"@type": "WebSite",
+				"name": "GameXRip",
+				"url": "https://gamexrip.com",
+				"description": "Your ultimate destination for game information, reviews, and details",
+				"potentialAction": {
+					"@type": "SearchAction",
+					"target": "https://gamexrip.netlify.app/search?q={search_term_string}",
+					"query-input": "required name=search_term_string"
+				}
+			}
+		</script>
+
+		<!-- Google Analytics -->
+		<script
+			async
+			src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"
+		></script>
+		<script>
+			window.dataLayer = window.dataLayer || [];
+			function gtag() {
+				dataLayer.push(arguments);
+			}
+			gtag("js", new Date());
+			gtag("config", "G-XXXXXXXXXX");
+		</script>
+
+		<title>GameXRip - Your Ultimate Gaming Information Hub</title>
 	</head>
 	<body>
 		<div id="root"></div>

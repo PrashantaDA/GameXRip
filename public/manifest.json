@@ -1,0 +1,23 @@
+{
+	"name": "GameXRip - Your Gaming Information Hub",
+	"short_name": "GameXRip",
+	"description": "Your ultimate destination for game information, reviews, and details",
+	"start_url": "/",
+	"display": "standalone",
+	"background_color": "#04020e",
+	"theme_color": "#7851a9",
+	"icons": [
+		{
+			"src": "/Gamexrip-logo.png",
+			"sizes": "192x192",
+			"type": "image/png",
+			"purpose": "any maskable"
+		},
+		{
+			"src": "/Gamexrip-logo.png",
+			"sizes": "512x512",
+			"type": "image/png",
+			"purpose": "any maskable"
+		}
+	]
+}
