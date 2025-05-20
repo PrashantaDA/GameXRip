@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
-import { Home, Error, ViewGameAll, ViewGameDetails, ViewStoreAll, ViewStoreDetails, ViewCreatorAll } from "../views/index";
+import { Home, Error, ViewGameAll, ViewGameDetails, ViewStoreAll, ViewStoreDetails, ViewCreatorAll, AboutPage } from "../views/index";
 import BaseLayout from "../layouts/BaseLayout";
 import { useEffect } from "react";
 
@@ -49,6 +49,10 @@ const AppRouter = () => {
 					<Route
 						path="creators"
 						element={<ViewCreatorAll />}
+					/>
+					<Route
+						path="about"
+						element={<AboutPage />}
 					/>
 					<Route
 						path="*"
