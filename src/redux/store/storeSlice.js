@@ -5,7 +5,7 @@ import { fetchAsyncStores, fetchAsyncStoresDetails } from "../utils/storeUtils";
 const initialState = {
 	stores: [],
 	storesStatus: STATUS.IDLE,
-	storesSingle: [],
+	storesSingle: null,
 	storesSingleStatus: STATUS.IDLE,
 };
 

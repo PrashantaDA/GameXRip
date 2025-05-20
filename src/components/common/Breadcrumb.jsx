@@ -9,18 +9,19 @@ const Breadcrumb = ({ dataNameById }) => {
 	return (
 		<BreadcrumbWrapper>
 			{breadcrumbs.map(({ match, breadcrumb }) => {
-				// For the last breadcrumb (game details), use the game name
-				if (match.pathname.includes("/games/")) {
+				// For the last breadcrumb (with parameters), use the provided name
+				if (match.pathname.includes("/stores/") || match.pathname.includes("/games/")) {
 					return (
 						<Link
 							className="breadcrumb-item"
 							to={match.pathname}
 							key={match.pathname}
 						>
-							{dataNameById || match.params.gameId}
+							{dataNameById}
 						</Link>
 					);
 				}
+
 				// For other breadcrumbs, use the default breadcrumb
 				return (
 					<Link

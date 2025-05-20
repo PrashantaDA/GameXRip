@@ -6,20 +6,20 @@ const StoreItem = ({ storeItem }) => {
 	return (
 		<StoreItemWrapper className="card d-grid">
 			<div className="card-img img-fit-cover">
-				<Link to={`stores/${storeItem?.id}`}>
-					<img
-						src={storeItem?.image_background}
-						alt={storeItem?.id || ""}
-					/>
-				</Link>
+				<img
+					src={storeItem?.image_background}
+					alt={storeItem?.id || ""}
+				/>
 			</div>
-			<div className="card-text d-flex flex-column justify-content-center">
-				<h5 className="card-title text-uppercase fw-7">{storeItem?.name}</h5>
+			<div className="card-text d-flex flex-column justify-content-start">
+				<Link to={`stores/${storeItem?.id}`}>
+					<h5 className="card-title text-uppercase fw-7">{storeItem?.name}</h5>
+				</Link>
 				<ul className="card-info">
 					<li>
 						<a
 							href={`https://${storeItem?.domain}`}
-							target="blank"
+							target="_blank"
 						>
 							{storeItem?.domain}
 						</a>
