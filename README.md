@@ -4,14 +4,13 @@ A modern React based website to find information related to games.
 
 ## 🚀 Features
 
-- Modern React 19 with Vite
+- React 19 with Vite
 - Redux Toolkit for state management
-- Responsive design with styled-components
-- Interactive UI components with react-slick
 - Comprehensive routing with react-router-dom
 - API integration with axios
+- Responsive design with styled-components
+- Interactive UI components with react-slick
 - SASS support for advanced styling
-- ESLint configuration for code quality
 
 ## 📦 Installation
 
@@ -39,7 +38,6 @@ npm run dev
 - `npm run dev` - Start development server
 - `npm run build` - Build for production
 - `npm run preview` - Preview production build
-- `npm run lint` - Run ESLint
 
 ## 🏗️ Project Structure
 
