@@ -239,7 +239,6 @@ const TabsWrapper = styled.div`
 		margin-right: auto;
 
 		h2 {
-			font-family: var(--font-family-poppins);
 			font-size: 28px;
 			font-weight: 600;
 			color: var(--clr-white);
