@@ -1,164 +1,259 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
+import { FaGithub, FaTwitter, FaDiscord, FaSteam } from "react-icons/fa";
 
 const Footer = () => {
-	return <FooterWrapper></FooterWrapper>;
+	const currentYear = new Date().getFullYear();
+
+	return (
+		<FooterWrapper>
+			<div className="footer-content">
+				<div className="footer-section">
+					<h3>GameXRip</h3>
+					<p>Your ultimate destination for gaming news, reviews, and community discussions.</p>
+					<div className="social-links">
+						<a
+							href="https://github.com"
+							target="_blank"
+							rel="noopener noreferrer"
+						>
+							<FaGithub />
+						</a>
+						<a
+							href="https://twitter.com"
+							target="_blank"
+							rel="noopener noreferrer"
+						>
+							<FaTwitter />
+						</a>
+						<a
+							href="https://discord.com"
+							target="_blank"
+							rel="noopener noreferrer"
+						>
+							<FaDiscord />
+						</a>
+						<a
+							href="https://store.steampowered.com"
+							target="_blank"
+							rel="noopener noreferrer"
+						>
+							<FaSteam />
+						</a>
+					</div>
+				</div>
+
+				<div className="footer-section">
+					<h4>Quick Links</h4>
+					<ul>
+						<li>
+							<Link to="/">Home</Link>
+						</li>
+						<li>
+							<Link to="/games">Games</Link>
+						</li>
+						<li>
+							<Link to="/creators">Creators</Link>
+						</li>
+						<li>
+							<Link to="/about">About Us</Link>
+						</li>
+					</ul>
+				</div>
+
+				<div className="footer-section">
+					<h4>Support</h4>
+					<ul>
+						<li>
+							<Link to="/faq">FAQ</Link>
+						</li>
+						<li>
+							<Link to="/contact">Contact Us</Link>
+						</li>
+						<li>
+							<Link to="/privacy">Privacy Policy</Link>
+						</li>
+						<li>
+							<Link to="/terms">Terms of Service</Link>
+						</li>
+					</ul>
+				</div>
+
+				<div className="footer-section">
+					<h4>Newsletter</h4>
+					<p>Subscribe to our newsletter for the latest updates.</p>
+					<div className="newsletter-form">
+						<input
+							type="email"
+							placeholder="Enter your email"
+						/>
+						<button type="button">Subscribe</button>
+					</div>
+				</div>
+			</div>
+
+			<div className="footer-bottom">
+				<p>&copy; {currentYear} GameXRip. All rights reserved.</p>
+			</div>
+		</FooterWrapper>
+	);
 };
 
 export default Footer;
 
 const FooterWrapper = styled.footer`
-	.footer-top {
-		background-color: var(--clr-violet-darker);
-		padding: 78px 0;
-		border-top: 1px solid rgba(255, 255, 255, 0.05);
+	position: relative;
+	background: linear-gradient(180deg, #000 0%, #090927 50%, #000 100%);
+	color: #fff;
+	padding: 4rem 2rem 1rem;
+	box-shadow: 0 -2px 20px rgba(0, 0, 0, 0.3);
+	border-top: 1px solid rgba(255, 255, 255, 0.05);
+
+	&::before {
+		content: "";
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		height: 1px;
+		background: linear-gradient(to right, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0));
 	}
 
 	.footer-content {
-		row-gap: 24px;
+		max-width: 1200px;
+		margin: 0 auto;
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+		gap: 2rem;
 	}
 
-	.navbar-brand {
-		font-weight: 700;
-		font-size: 32px;
-		margin-bottom: 18px;
-
-		span {
-			color: var(--clr-purple-normal);
+	.footer-section {
+		h3 {
+			color: #ffffff;
+			font-size: 1.5rem;
+			margin-bottom: 1rem;
+			text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
 		}
-	}
 
-	.footer-item {
-		text-align: center;
-
-		.para-text {
-			max-width: 380px;
-			margin-right: auto;
-			margin-left: auto;
+		h4 {
+			color: #ffffff;
+			font-size: 1.2rem;
+			margin-bottom: 1rem;
+			text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
 		}
-	}
 
-	.footer-item-links {
-		li {
-			margin: 6px 0;
+		p {
+			color: #a0a0a0;
+			line-height: 1.6;
+			margin-bottom: 1rem;
+		}
 
-			a {
-				color: rgba(255, 255, 255, 0.9);
+		ul {
+			list-style: none;
+			padding: 0;
 
-				&:hover {
-					color: var(--clr-white);
-					text-decoration: underline;
+			li {
+				margin-bottom: 0.5rem;
+
+				a {
+					color: #a0a0a0;
+					text-decoration: none;
+					transition: all 0.3s ease;
+					display: inline-block;
+
+					&:hover {
+						color: #ffffff;
+						transform: translateX(5px);
+					}
 				}
 			}
 		}
 	}
 
-	.footer-item-title {
-		margin-bottom: 12px;
-		font-size: 20px;
-		letter-spacing: 0.03em;
-		font-weight: 700;
+	.social-links {
+		display: flex;
+		gap: 1rem;
+		margin-top: 1rem;
+
+		a {
+			color: #a0a0a0;
+			font-size: 1.5rem;
+			transition: all 0.3s ease;
+
+			&:hover {
+				color: #ffffff;
+				transform: translateY(-3px);
+			}
+		}
 	}
 
 	.newsletter-form {
-		margin-top: 18px;
+		display: flex;
+		gap: 0.5rem;
+		margin-top: 1rem;
 
-		.input-group {
-			height: 48px;
-			max-width: 284px;
-			width: 100%;
-			margin-right: auto;
-			margin-left: auto;
-			transition: var(--transition-default);
+		input {
+			flex: 1;
+			padding: 0.5rem 1rem;
+			border: 1px solid rgba(255, 255, 255, 0.1);
+			border-radius: 4px;
+			background: rgba(255, 255, 255, 0.05);
+			color: #fff;
+			outline: none;
 
-			:has(.input-group-field:focus) {
-				box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+			&::placeholder {
+				color: #a0a0a0;
 			}
 
-			&-field {
-				background: #0c0a24;
-				padding-left: 22px;
-				padding-right: 22px;
-				color: var(--clr-white);
-				flex: 1;
-
-				&::placeholder {
-					color: var(--clr-white);
-					opacity: 0.8;
-				}
+			&:focus {
+				border-color: rgba(255, 255, 255, 0.2);
+				background: rgba(255, 255, 255, 0.08);
 			}
+		}
 
-			&-btn {
-				color: #0c0a24;
-				width: 48px;
+		button {
+			padding: 0.5rem 1rem;
+			background: rgba(255, 255, 255, 0.1);
+			color: #fff;
+			border: none;
+			border-radius: 4px;
+			cursor: pointer;
+			transition: all 0.3s ease;
 
-				&:hover {
-					transform: scale(1.1);
-				}
+			&:hover {
+				background: rgba(255, 255, 255, 0.15);
+				transform: translateY(-2px);
 			}
 		}
 	}
 
 	.footer-bottom {
-		background: #04020e;
-		padding: 20px 0;
-		&-text {
-			font-weight: 500;
-		}
-
-		li {
-			margin-left: 18px;
-		}
-
-		&-links {
-			margin-top: 12px;
-		}
-	}
-
-	@media screen and (min-width: 768px) {
-		.footer-content {
-			grid-template-columns: repeat(2, 1fr);
-			column-gap: 32px;
-
-			.footer-item {
-				text-align: left;
-
-				.para-text {
-					margin-left: 0;
-				}
-			}
-
-			.input-group {
-				margin-left: 0;
-			}
-		}
-
-		.footer-bottom {
-			& > .container {
-				flex-direction: var(--clr-white);
-				justify-content: space-between;
-			}
-
-			li {
-				margin-left: 32px;
-			}
-			&-links {
-				margin-top: 0;
-			}
-		}
-	}
-
-	@media screen and (min-width: 992px) {
-		flex-direction: row;
+		max-width: 1200px;
+		margin: 2rem auto 0;
+		padding-top: 2rem;
+		border-top: 1px solid rgba(255, 255, 255, 0.05);
 		text-align: center;
 
-		.footer-bottom-links {
-			justify-content: center;
+		p {
+			color: #a0a0a0;
+			font-size: 0.9rem;
 		}
 	}
 
-	@media screen and (min-width: 1200px) {
+	@media (max-width: 768px) {
+		padding: 3rem 1rem 1rem;
+
 		.footer-content {
-			grid-template-columns: 3fr 2fr 2fr 3fr;
+			grid-template-columns: 1fr;
+			text-align: center;
+		}
+
+		.social-links {
+			justify-content: center;
+		}
+
+		.newsletter-form {
+			flex-direction: column;
 		}
 	}
 `;
