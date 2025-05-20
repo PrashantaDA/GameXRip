@@ -191,6 +191,7 @@ const GameDetailsWrapper = styled.div`
 		-webkit-overflow-scrolling: touch;
 		scrollbar-width: none;
 		-ms-overflow-style: none;
+		padding: 0 8px 16px 8px;
 
 		&::-webkit-scrollbar {
 			display: none;
@@ -199,6 +200,8 @@ const GameDetailsWrapper = styled.div`
 		@media (max-width: 768px) {
 			gap: 8px;
 			padding-bottom: 12px;
+			margin: 0 -8px 24px -8px;
+			padding: 0 8px 12px 8px;
 		}
 	}
 
@@ -216,6 +219,7 @@ const GameDetailsWrapper = styled.div`
 		cursor: pointer;
 		white-space: nowrap;
 		flex-shrink: 0;
+		min-width: max-content;
 
 		&:hover {
 			background: rgba(255, 255, 255, 0.05);
@@ -226,14 +230,26 @@ const GameDetailsWrapper = styled.div`
 		.tab-icon {
 			font-size: 18px;
 			color: var(--clr-purple-normal);
+			flex-shrink: 0;
 		}
 
 		@media (max-width: 768px) {
 			padding: 8px 16px;
 			font-size: 14px;
+			gap: 6px;
 
 			.tab-icon {
 				font-size: 16px;
+			}
+		}
+
+		@media (max-width: 480px) {
+			padding: 6px 12px;
+			font-size: 13px;
+			gap: 4px;
+
+			.tab-icon {
+				font-size: 14px;
 			}
 		}
 	}
@@ -250,8 +266,10 @@ const GameDetailsWrapper = styled.div`
 	}
 
 	.react-tabs__tab-panel {
-		&--selected {
-			animation: fadeIn 0.3s ease;
+		padding: 0 8px;
+
+		@media (max-width: 768px) {
+			padding: 0 4px;
 		}
 	}
 `;
