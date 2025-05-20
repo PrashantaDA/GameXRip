@@ -55,6 +55,13 @@ const HomePage = () => {
 		navigate("/games", { replace: true });
 	};
 
+	/**
+	 * Handles navigation to all stores page
+	 */
+	const handleViewAllStores = () => {
+		navigate("/stores", { replace: true });
+	};
+
 	// Renders popular games section with view all button
 	const renderedPopularGames = (
 		<>
@@ -68,6 +75,24 @@ const HomePage = () => {
 					className="section-btn"
 				>
 					View all games
+				</button>
+			</div>
+		</>
+	);
+
+	// Renders stores section with view all button
+	const renderedStores = (
+		<>
+			<StoreList
+				stores={stores}
+				isHomePage={true}
+			/>
+			<div className="d-flex justify-content-center">
+				<button
+					onClick={handleViewAllStores}
+					className="section-btn"
+				>
+					View all stores
 				</button>
 			</div>
 		</>
@@ -162,7 +187,7 @@ const HomePage = () => {
 							secondText: "Stores💸",
 						}}
 					/>
-					{storesStatus === STATUS.LOADING ? <Preloader /> : stores?.length > 0 ? <StoreList stores={stores} /> : "No stores found"}
+					{storesStatus === STATUS.LOADING ? <Preloader /> : stores?.length > 0 ? renderedStores : "No stores found"}
 				</div>
 			</section>
 		</HomeWrapper>
@@ -318,7 +343,9 @@ const HomeWrapper = styled.div`
 			left: 0;
 			width: 100%;
 			height: 100%;
+			background: radial-gradient(circle at center, rgba(157, 78, 221, 0.15) 0%, transparent 70%);
 			z-index: 1;
+			animation: pulse 8s ease-in-out infinite;
 		}
 
 		&::after {
@@ -328,10 +355,9 @@ const HomeWrapper = styled.div`
 			left: 0;
 			width: 100%;
 			height: 100%;
-
+			background: linear-gradient(180deg, rgba(12, 10, 36, 0.8) 0%, rgba(0, 0, 0, 0.9) 100%);
 			z-index: 1;
 			pointer-events: none;
-			animation: pulse 8s ease-in-out infinite;
 		}
 
 		.container {
@@ -357,15 +383,61 @@ const HomeWrapper = styled.div`
 				animation: shimmer 2s infinite;
 			}
 		}
+
+		.section-btn {
+			margin-top: 40px;
+			background: var(--clr-purple-normal);
+			border: 2px solid var(--clr-purple-normal);
+			color: var(--clr-white);
+			cursor: pointer;
+			font-size: 1.8rem;
+			font-weight: 600;
+			text-transform: uppercase;
+			transition: all 0.3s ease;
+			padding: 1rem 3rem;
+			border-radius: 8px;
+			position: relative;
+			overflow: hidden;
+			box-shadow: 0 4px 15px rgba(157, 78, 221, 0.2);
+
+			&::before {
+				content: "";
+				position: absolute;
+				top: 0;
+				left: -100%;
+				width: 100%;
+				height: 100%;
+				background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+				transition: 0.5s;
+			}
+
+			&:hover {
+				transform: translateY(-3px);
+				box-shadow: 0 6px 20px rgba(157, 78, 221, 0.3);
+				background: var(--clr-purple-normal);
+				border-color: var(--clr-purple-normal);
+
+				&::before {
+					left: 100%;
+				}
+			}
+
+			&:active {
+				transform: translateY(-1px);
+				box-shadow: 0 4px 15px rgba(157, 78, 221, 0.2);
+			}
+		}
 	}
 
 	@keyframes pulse {
 		0%,
 		100% {
 			opacity: 0.5;
+			transform: scale(1);
 		}
 		50% {
-			opacity: 1;
+			opacity: 0.8;
+			transform: scale(1.05);
 		}
 	}
 

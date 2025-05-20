@@ -74,7 +74,7 @@ const ImageSliderWrapper = styled.div`
 	overflow: hidden;
 
 	.slider-background {
-		background: linear-gradient(rgba(0, 0, 0, 0.99), rgba(0, 0, 0, 0.92));
+		background: linear-gradient(rgba(1, 1, 2, 0.99), rgba(7, 5, 14, 0.97));
 		padding: 90px 9px;
 	}
 

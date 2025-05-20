@@ -66,7 +66,12 @@ const GameAllPage = () => {
 							/>
 						</>
 					) : (
-						"Games Not Found!!"
+						<div className="not-found-wrapper">
+							<div className="not-found-content">
+								<h3 className="text-white mb-3">No Games Found</h3>
+								<p className="text-white-50">We couldn't find any games matching your criteria.</p>
+							</div>
+						</div>
 					)}
 				</div>
 			</section>
@@ -153,6 +158,47 @@ const GameAllPageWrapper = styled.div`
 		}
 		100% {
 			background-position: 200% 0;
+		}
+	}
+
+	.not-found-wrapper {
+		background: rgba(0, 0, 0, 0.16);
+		padding: 32px;
+		margin-top: 32px;
+		backdrop-filter: blur(10px);
+		border-radius: 24px;
+		border: 1px solid rgba(255, 255, 255, 0.05);
+		box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+		text-align: center;
+
+		.not-found-content {
+			h3 {
+				font-size: 24px;
+				letter-spacing: 0.04em;
+				text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+				position: relative;
+				display: inline-block;
+				padding-bottom: 12px;
+				margin-bottom: 16px;
+
+				&::after {
+					content: "";
+					position: absolute;
+					bottom: 0;
+					left: 50%;
+					transform: translateX(-50%);
+					width: 60px;
+					height: 3px;
+					background: linear-gradient(90deg, var(--clr-purple-normal), transparent);
+					border-radius: 2px;
+				}
+			}
+
+			p {
+				font-size: 16px;
+				line-height: 1.6;
+				opacity: 0.8;
+			}
 		}
 	}
 `;
