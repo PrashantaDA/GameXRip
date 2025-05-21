@@ -16,6 +16,7 @@ const ImageSlider = () => {
 		speed: 700,
 		autoplay: true,
 		dots: true,
+
 		responsive: [
 			{
 				breakpoint: 1400,
@@ -28,6 +29,7 @@ const ImageSlider = () => {
 				settings: {
 					slidesToShow: 1,
 					centerPadding: "70px",
+					fade: true,
 				},
 			},
 			{
@@ -35,6 +37,7 @@ const ImageSlider = () => {
 				settings: {
 					centerPadding: "0px",
 					slidesToShow: 1,
+					fade: true,
 					dots: false,
 				},
 			},
@@ -75,12 +78,12 @@ const ImageSliderWrapper = styled.div`
 
 	.slider-background {
 		background: linear-gradient(rgba(3, 3, 10, 0.99), rgba(7, 3, 20, 0.97));
-		padding: 90px 9px;
+		padding: 70px 7px;
 	}
 
 	.game-slider {
 		.slider-item {
-			height: 400px;
+			height: 480px;
 			padding: 60px;
 			outline: 0;
 
@@ -92,11 +95,12 @@ const ImageSliderWrapper = styled.div`
 		}
 
 		.slick-list {
-			padding-top: 20px !important;
-			padding-bottom: 20px !important;
+			padding-top: 36px !important;
+			padding-bottom: 36px !important;
 		}
 
 		.slick-dots {
+			bottom: -40px;
 			li {
 				height: 10px;
 				width: 36px;
@@ -117,7 +121,7 @@ const ImageSliderWrapper = styled.div`
 		}
 
 		.slick-center {
-			transform: scale(1.6);
+			transform: scale(1.5);
 		}
 
 		.slick-prev {
