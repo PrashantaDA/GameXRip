@@ -4,7 +4,7 @@ import StoreItem from "./StoreItem";
 
 const StoreList = ({ stores, isHomePage = false }) => {
 	// For homepage, show only top 4 stores
-	const displayStores = isHomePage ? stores?.slice(0, 4) : stores;
+	const displayStores = isHomePage ? stores?.slice(0, 3) : stores;
 
 	return (
 		<StoreListWrapper>
