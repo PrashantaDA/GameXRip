@@ -15,7 +15,6 @@ import {
 } from "../views/index";
 import BaseLayout from "../layouts/BaseLayout";
 import { useEffect } from "react";
-import { scrollToTop } from "../utils/scrollUtils";
 import { ROUTES } from "../constants";
 
 // ScrollToTop component to handle scrolling on route changes
@@ -23,7 +22,13 @@ const ScrollToTop = () => {
 	const { pathname } = useLocation();
 
 	useEffect(() => {
-		scrollToTop();
+		// Only scroll if we're not already at the top
+		if (window.scrollY > 0) {
+			window.scrollTo({
+				top: 0,
+				behavior: "smooth",
+			});
+		}
 	}, [pathname]);
 
 	return null;
