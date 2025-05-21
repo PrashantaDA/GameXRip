@@ -61,9 +61,9 @@ src/
 - React 19
 - Redux Toolkit
 - React Router DOM
+- Axios
 - Styled Components
 - SASS
-- Axios
 - React Slick
 - Motion
 - React Icons
