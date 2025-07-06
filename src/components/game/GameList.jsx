@@ -37,7 +37,6 @@ const GameListWrapper = styled.div`
 	width: 100%;
 	box-sizing: border-box;
 	position: relative;
-	overflow: hidden;
 `;
 
 export default GameList;
