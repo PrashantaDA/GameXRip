@@ -90,8 +90,6 @@ const GameAllPageWrapper = styled.div`
 	width: 100%;
 	box-sizing: border-box;
 	position: relative;
-	overflow: hidden;
-	flex: 1;
 	display: flex;
 	flex-direction: column;
 `;
